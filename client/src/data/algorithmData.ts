@@ -2006,6 +2006,8 @@ public ListNode detectCycle(ListNode head) {
 
 核心心法：**"吃完一层，拆一面墙"**。
 
+![Symmetric Swap Logic](/images/spiral/symmetric-swap.png)
+
 ---
 
 ### 第一阶段：变量选角面试 (The Casting Call) —— 幼儿园视角
