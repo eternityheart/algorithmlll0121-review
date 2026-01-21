@@ -179,14 +179,28 @@
 
   /* 代码块样式 */
   .code-block {
-    @apply bg-slate-900 text-slate-100 rounded-lg p-4 overflow-x-auto;
+    @apply bg-slate-900 text-slate-100 rounded-xl p-4 overflow-x-auto my-4;
     font-family: 'Fira Code', monospace;
-    font-size: 0.875rem;
+    font-size: 0.8rem;
     line-height: 1.6;
+  }
+
+  @media (min-width: 640px) {
+    .code-block {
+      font-size: 0.875rem;
+    }
   }
 
   .code-block code {
     @apply text-slate-100;
+    white-space: pre;
+    display: block;
+  }
+
+  /* 行内代码样式 */
+  .inline-code {
+    @apply px-1.5 py-0.5 bg-slate-100 text-indigo-600 rounded text-sm;
+    font-family: 'Fira Code', monospace;
   }
 
   /* 知识点高亮 */
@@ -224,6 +238,134 @@
   }
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-muted-foreground/50;
+  }
+
+  /* ========================================
+     Markdown 渲染样式 - 统一手机端宽度
+     ======================================== */
+  
+  .markdown-content {
+    @apply text-slate-700 leading-relaxed;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* 标题样式 */
+  .markdown-content .content-h3 {
+    @apply text-lg sm:text-xl font-bold text-slate-800 mt-6 sm:mt-8 mb-3 sm:mb-4 flex items-center gap-2;
+    font-family: 'Noto Serif SC', Georgia, serif;
+  }
+
+  .markdown-content .content-h3::before {
+    content: '';
+    @apply w-1 sm:w-1.5 h-5 sm:h-6 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full flex-shrink-0;
+  }
+
+  .markdown-content .content-h4 {
+    @apply text-base sm:text-lg font-semibold text-slate-700 mt-4 sm:mt-6 mb-2 sm:mb-3;
+  }
+
+  /* 段落样式 */
+  .markdown-content .content-p {
+    @apply my-3 sm:my-4 text-sm sm:text-base text-slate-600 leading-relaxed;
+  }
+
+  /* 引用块样式 - 重要概念强调 */
+  .markdown-content .content-blockquote {
+    @apply my-4 sm:my-6 pl-3 sm:pl-4 py-2 sm:py-3 bg-amber-50/80 rounded-r-xl border-l-4 border-amber-400 text-slate-700 italic text-sm sm:text-base;
+  }
+
+  /* 列表样式 */
+  .markdown-content .content-ul {
+    @apply my-3 sm:my-4 space-y-1.5 sm:space-y-2 list-none pl-0;
+  }
+
+  .markdown-content .content-li {
+    @apply flex items-start gap-2 text-sm sm:text-base text-slate-600;
+  }
+
+  .markdown-content .content-li::before {
+    content: '';
+    @apply w-1.5 h-1.5 rounded-full bg-indigo-400 mt-2 flex-shrink-0;
+  }
+
+  .markdown-content .content-ol {
+    @apply my-3 sm:my-4 space-y-1.5 sm:space-y-2 list-decimal pl-5;
+  }
+
+  .markdown-content .content-oli {
+    @apply text-sm sm:text-base text-slate-600;
+  }
+
+  /* 表格样式 */
+  .markdown-content .table-wrapper {
+    @apply my-4 sm:my-6 overflow-x-auto rounded-xl border border-border/50;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .markdown-content .content-table {
+    @apply w-full min-w-max text-sm;
+  }
+
+  .markdown-content .table-header {
+    @apply bg-slate-100;
+  }
+
+  .markdown-content .table-row:nth-child(even) {
+    @apply bg-slate-50/50;
+  }
+
+  .markdown-content .table-cell {
+    @apply px-3 sm:px-4 py-2 sm:py-3 border-b border-border/30 text-slate-600 text-xs sm:text-sm;
+  }
+
+  .markdown-content .table-header .table-cell {
+    @apply font-semibold text-slate-700 bg-slate-100;
+  }
+
+  /* 分隔线 */
+  .markdown-content .content-hr {
+    @apply my-6 sm:my-8 border-0 h-px bg-gradient-to-r from-transparent via-border to-transparent;
+  }
+
+  /* LaTeX 公式样式 */
+  .markdown-content .latex-block {
+    @apply my-4 sm:my-6 py-3 sm:py-4 px-2 sm:px-4 bg-slate-50 rounded-lg overflow-x-auto text-center;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .markdown-content .latex-inline {
+    @apply mx-0.5;
+  }
+
+  .markdown-content .latex-error {
+    @apply text-red-500 bg-red-50 px-2 py-1 rounded;
+  }
+
+  /* KaTeX 样式调整 */
+  .markdown-content .katex {
+    font-size: 1em;
+  }
+
+  @media (min-width: 640px) {
+    .markdown-content .katex {
+      font-size: 1.1em;
+    }
+  }
+
+  .markdown-content .katex-display {
+    @apply overflow-x-auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* 算法内容区域 */
+  .algorithm-content {
+    @apply w-full;
+  }
+
+  .algorithm-content .markdown-content {
+    @apply w-full;
   }
 }
 
