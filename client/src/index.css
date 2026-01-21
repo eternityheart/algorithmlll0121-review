@@ -172,9 +172,9 @@
     }
   }
 
-  /* 毛玻璃卡片效果 */
+  /* 毛玻璃卡片效果 - 移除 backdrop-blur 以优化平板性能 */
   .glass-card {
-    @apply bg-card backdrop-blur-md border border-white/20 shadow-lg;
+    @apply bg-card border border-white/20 shadow-lg;
   }
 
   /* 代码块样式 */

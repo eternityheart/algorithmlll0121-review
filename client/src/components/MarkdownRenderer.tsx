@@ -25,7 +25,7 @@ function parseMarkdown(text: string): string {
   const codeBlocks: string[] = [];
   let result = text;
 
-  // 处理代码块 ```code```
+  // 处理代码块
   result = result.replace(/```(\w*)\n([\s\S]*?)```/g, (_, lang, code) => {
     const index = codeBlocks.length;
     const escapedCode = escapeHtml(code.trim());
@@ -33,9 +33,6 @@ function parseMarkdown(text: string): string {
     codeBlocks.push(`<pre class="code-block ${langClass}"><code>${escapedCode}</code></pre>`);
     return `__CODE_BLOCK_${index}__`;
   });
-
-  // 处理行内代码 `code`
-  result = result.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
 
   // 处理 LaTeX 块级公式 $$...$$
   result = result.replace(/\$\$([\s\S]*?)\$\$/g, (_, formula) => {
@@ -51,6 +48,40 @@ function parseMarkdown(text: string): string {
     }
   });
 
+  // 处理标题 (Block)
+  result = result.replace(/^### (.*$)/gm, '<h3 class="content-h3">$1</h3>');
+  result = result.replace(/^#### (.*$)/gm, '<h4 class="content-h4">$1</h4>');
+
+  // 处理引用 > text (Block)
+  result = result.replace(/^> (.*$)/gm, '<blockquote class="content-blockquote">$1</blockquote>');
+  result = result.replace(/<\/blockquote>\n<blockquote class="content-blockquote">/g, '<br/>');
+
+  // 处理无序列表 (Block) - 支持 - 和 *
+  result = result.replace(/^[-*] (.*$)/gm, '<li class="content-li">$1</li>');
+  result = result.replace(/(<li class="content-li">.*<\/li>\n?)+/g, (match) => {
+    return `<ul class="content-ul">${match}</ul>`;
+  });
+
+  // 处理有序列表 (Block)
+  result = result.replace(/^\d+\. (.*$)/gm, '<li class="content-oli">$1</li>');
+  result = result.replace(/(<li class="content-oli">.*<\/li>\n?)+/g, (match) => {
+    return `<ol class="content-ol">${match}</ol>`;
+  });
+
+  // 处理水平线 (Block)
+  result = result.replace(/^---+$/gm, '<hr class="content-hr" />');
+
+  // 处理表格 (Block)
+  result = processTable(result);
+
+  // === 以下是 Inline 元素 ===
+
+  // 处理图片 ![alt](src)
+  result = result.replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" class="content-image my-4 rounded-lg shadow-md mx-auto max-w-full" />');
+
+  // 处理行内代码 `code`
+  result = result.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
+
   // 处理 LaTeX 行内公式 $...$
   result = result.replace(/\$([^$\n]+)\$/g, (_, formula) => {
     try {
@@ -65,44 +96,18 @@ function parseMarkdown(text: string): string {
     }
   });
 
-  // 处理标题
-  result = result.replace(/^### (.*$)/gm, '<h3 class="content-h3">$1</h3>');
-  result = result.replace(/^#### (.*$)/gm, '<h4 class="content-h4">$1</h4>');
-
   // 处理粗体 **text**
-  result = result.replace(/\*\*([^*]+)\*\*/g, '<strong class="font-semibold text-foreground">$1</strong>');
+  result = result.replace(/\*\*([^*\n]+)\*\*/g, '<strong class="font-semibold text-foreground">$1</strong>');
 
-  // 处理斜体 *text*
-  result = result.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-
-  // 处理图片 ![alt](src)
-  result = result.replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" class="content-image my-4 rounded-lg shadow-md mx-auto max-w-full" />');
-
-  // 处理引用 > text
-  result = result.replace(/^> (.*$)/gm, '<blockquote class="content-blockquote">$1</blockquote>');
-
-  // 合并连续的引用块
-  result = result.replace(/<\/blockquote>\n<blockquote class="content-blockquote">/g, '<br/>');
-
-  // 处理无序列表
-  result = result.replace(/^- (.*$)/gm, '<li class="content-li">$1</li>');
-  result = result.replace(/(<li class="content-li">.*<\/li>\n?)+/g, (match) => {
-    return `<ul class="content-ul">${match}</ul>`;
-  });
-
-  // 处理有序列表
-  result = result.replace(/^\d+\. (.*$)/gm, '<li class="content-oli">$1</li>');
-  result = result.replace(/(<li class="content-oli">.*<\/li>\n?)+/g, (match) => {
-    return `<ol class="content-ol">${match}</ol>`;
-  });
-
-  // 处理表格
-  result = processTable(result);
-
-  // 处理水平线
-  result = result.replace(/^---+$/gm, '<hr class="content-hr" />');
+  // 处理斜体 *text* (Optimized: [^*\n]+ to avoid crossing lines)
+  result = result.replace(/(^|[^\\])\*([^*\n]+)\*/g, '$1<em>$2</em>');
 
   // 处理段落（连续的非空行）
+  // 注意：这个时候 HTML 标签已经存在了，所以 regex 要小心
+  // 简单策略：如果一行不是以 < 开头，也不是 CODE_BLOCK，就包 p
+  // 但这样会误伤已经被处理过的行内元素。
+  // 更好的策略：先 split by \n\n?
+  // 现有的逻辑：
   result = result.replace(/^(?!<[a-z]|__CODE_BLOCK)(.+)$/gm, '<p class="content-p">$1</p>');
 
   // 移除多余的空行
