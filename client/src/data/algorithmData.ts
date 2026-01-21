@@ -575,50 +575,43 @@ void backtrack(int n, int left, int right, StringBuilder path) {
 
 在二维网格中搜索单词，可以上下左右移动。
 
-\`\`\`java
-int[][] directions = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+**Trick：借尸还魂 (Masking)**
+为了省去 \`visited\` 数组的空间，我们直接在 \`board\` 上动手脚。走过的地方标记为 \`'#'\`，回来的时候再还原。
 
+\`\`\`java
 public boolean exist(char[][] board, String word) {
-    int m = board.length, n = board[0].length;
-    boolean[][] visited = new boolean[m][n];
-    
-    for (int i = 0; i < m; i++) {
-        for (int j = 0; j < n; j++) {
-            if (backtrack(board, word, 0, i, j, visited)) {
-                return true;
-            }
+    for (int i = 0; i < board.length; i++) {
+        for (int j = 0; j < board[0].length; j++) {
+            if (backtrack(board, word, 0, i, j)) return true;
         }
     }
     return false;
 }
 
-boolean backtrack(char[][] board, String word, int index, 
-                  int row, int col, boolean[][] visited) {
-    // 结束条件
+boolean backtrack(char[][] board, String word, int index, int row, int col) {
+    // 结束条件：单词的所有字符都找到了
     if (index == word.length()) return true;
     
-    // 边界检查
+    // 边界检查 + 字符不匹配 + 已经访问过('#')
     if (row < 0 || row >= board.length || 
-        col < 0 || col >= board[0].length ||
-        visited[row][col] || 
+        col < 0 || col >= board[0].length || 
         board[row][col] != word.charAt(index)) {
         return false;
     }
     
-    // 做选择
-    visited[row][col] = true;
+    // Core: 借尸还魂 (Masking)
+    char temp = board[row][col]; // 1. 记下当前字符
+    board[row][col] = '#';      // 2. 毁尸灭迹 (标记为已访问)
     
     // 四个方向递归
-    for (int[] dir : directions) {
-        if (backtrack(board, word, index + 1, 
-                      row + dir[0], col + dir[1], visited)) {
-            return true;
-        }
-    }
+    boolean found = backtrack(board, word, index + 1, row + 1, col) ||
+                    backtrack(board, word, index + 1, row - 1, col) ||
+                    backtrack(board, word, index + 1, row, col + 1) ||
+                    backtrack(board, word, index + 1, row, col - 1);
+                    
+    board[row][col] = temp;     // 3. 还魂 (回溯恢复)
     
-    // 撤销选择
-    visited[row][col] = false;
-    return false;
+    return found;
 }
 \`\`\`
 `
@@ -665,7 +658,11 @@ boolean backtrack(String s, int start, Set<String> dict, Boolean[] memo) {
 
 在 N×N 棋盘上放置 N 个皇后，使它们互不攻击。
 
-**攻击规则**：同行、同列、同对角线不能有其他皇后。
+**三大侍卫 (The Three Guards)**
+为了保护皇后，我们需要三个方向的“侍卫”来检查安全性：
+1. **列侍卫**：头顶上有没有人？
+2. **左上侍卫**：左上角对角线有没有人？
+3. **右上侍卫**：右上角对角线有没有人？
 
 \`\`\`java
 List<List<String>> result = new ArrayList<>();
@@ -687,25 +684,27 @@ void backtrack(char[][] board, int row) {
         if (!isValid(board, row, col)) continue;
         
         board[row][col] = 'Q';
-        backtrack(board, row + 1);
-        board[row][col] = '.';
+        backtrack(board, row + 1); // 去下一行
+        board[row][col] = '.';     // 撤销
     }
 }
 
 boolean isValid(char[][] board, int row, int col) {
     int n = board.length;
     
-    // 检查列
+    // 1. 列侍卫 (检查正上方)
     for (int i = 0; i < row; i++) {
         if (board[i][col] == 'Q') return false;
     }
     
-    // 检查左上对角线
+    // 2. 左上侍卫 (检查左上对角线)
     for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
         if (board[i][j] == 'Q') return false;
     }
     
-    // 检查右上对角线
+    // 3. 右上侍卫 (检查右上对角线)
+    // 注意：不用检查当前行（每一行只放一个）
+    // 注意：不用检查下方（还没放呢）
     for (int i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++) {
         if (board[i][j] == 'Q') return false;
     }
@@ -715,9 +714,7 @@ boolean isValid(char[][] board, int row, int col) {
 
 List<String> construct(char[][] board) {
     List<String> res = new ArrayList<>();
-    for (char[] row : board) {
-        res.add(new String(row));
-    }
+    for (char[] row : board) res.add(new String(row));
     return res;
 }
 \`\`\`
@@ -1789,14 +1786,27 @@ public int[] topKFrequent(int[] nums, int k) {
 }
 \`\`\`
 
-#### 3. 中位数：制作大根堆小根堆
+#### 3. 中位数：入学考试机制
 
-平的时候在小根堆走一圈去大根堆，所以大根堆可能是多（进去之前先涮一圈）。
+### 数据流的中位数
+
+**核心机制：入学考试 (Admission Test)**
+
+我们要维护两个堆：
+- **小根堆 (minHeap)**：存放 **精英班**（较大的那一般数）。
+- **大根堆 (maxHeap)**：存放 **普通班**（较小的那一半数）。
+
+**新数入班流程**：
+1. **所有新生先去普通班报道**：\`maxHeap.offer(num)\`
+2. **普通班第一名去精英班参加入学考试**：\`minHeap.offer(maxHeap.poll())\`
+   - *潜台词*：你是普通班最强的，去看看你在精英班能排第几？
+3. **平衡人数**：如果精英班人太多了（超过普通班），把精英班最弱的踢回普通班。
+   - \`if (minHeap.size() > maxHeap.size()) maxHeap.offer(minHeap.poll());\`
 
 \`\`\`java
 class MedianFinder {
-    PriorityQueue<Integer> maxHeap; // 存较小的一半
-    PriorityQueue<Integer> minHeap; // 存较大的一半
+    PriorityQueue<Integer> maxHeap; // 普通班 (大根堆)
+    PriorityQueue<Integer> minHeap; // 精英班 (小根堆)
     
     public MedianFinder() {
         maxHeap = new PriorityQueue<>((a, b) -> b - a);
@@ -1804,11 +1814,12 @@ class MedianFinder {
     }
     
     public void addNum(int num) {
-        // 先加入大根堆
+        // 1. 先进普通班 (大根堆)
         maxHeap.offer(num);
-        // 涮一圈：把大根堆的最大值给小根堆
+        // 2. 选拔最强的去精英班 (小根堆)
         minHeap.offer(maxHeap.poll());
-        // 保持平衡：大根堆可以多一个
+        
+        // 3. 平衡：保证普通班人数 >= 精英班
         if (minHeap.size() > maxHeap.size()) {
             maxHeap.offer(minHeap.poll());
         }
