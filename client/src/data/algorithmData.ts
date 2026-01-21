@@ -4,30 +4,30 @@
  */
 
 export interface Section {
-  id: string;
-  title: string;
-  content: string;
+    id: string;
+    title: string;
+    content: string;
 }
 
 export interface Category {
-  id: string;
-  title: string;
-  icon: string;
-  tagClass: string;
-  sections: Section[];
+    id: string;
+    title: string;
+    icon: string;
+    tagClass: string;
+    sections: Section[];
 }
 
 export const algorithmData: Category[] = [
-  {
-    id: "binary-search",
-    title: "二分查找",
-    icon: "🔍",
-    tagClass: "bg-gradient-to-r from-blue-500 to-cyan-500",
-    sections: [
-      {
-        id: "binary-search-basic",
-        title: "1. 二分查找基础",
-        content: `
+    {
+        id: "binary-search",
+        title: "二分查找",
+        icon: "🔍",
+        tagClass: "bg-gradient-to-r from-blue-500 to-cyan-500",
+        sections: [
+            {
+                id: "binary-search-basic",
+                title: "1. 二分查找基础",
+                content: `
 ### 什么时候用 \`<\` (不带等于)?
 
 你会看到有些高手的代码里确实写的是 \`while (left < right)\`，那是因为他们第一行写的不一样：\`int right = nums.length;\`（注意没有 \`-1\`）
@@ -73,11 +73,11 @@ public int search(int[] nums, int target) {
 }
 \`\`\`
 `
-      },
-      {
-        id: "binary-search-2d",
-        title: "2. 二维数组",
-        content: `
+            },
+            {
+                id: "binary-search-2d",
+                title: "2. 二维数组",
+                content: `
 ### 二维数组的二分查找
 
 把二维数组看成一维数组进行二分查找。
@@ -105,11 +105,11 @@ public boolean searchMatrix(int[][] matrix, int target) {
 }
 \`\`\`
 `
-      },
-      {
-        id: "binary-search-boundary",
-        title: "3. 找到两个边界",
-        content: `
+            },
+            {
+                id: "binary-search-boundary",
+                title: "3. 找到两个边界",
+                content: `
 ### 第一阶段：变量选角 (The Casting Call) —— 为什么要加个 \`result\`?
 
 你引入了一个新变量：\`int result = -1;\`
@@ -169,11 +169,11 @@ public int findRight(int[] nums, int target) {
 }
 \`\`\`
 `
-      },
-      {
-        id: "binary-search-rotated",
-        title: "4. 旋转数组（有序）",
-        content: `
+            },
+            {
+                id: "binary-search-rotated",
+                title: "4. 旋转数组（有序）",
+                content: `
 ### 旋转数组的二分查找
 
 **核心思想**：旋转后的数组，至少有一半是有序的。
@@ -216,11 +216,11 @@ public int search(int[] nums, int target) {
 }
 \`\`\`
 `
-      },
-      {
-        id: "binary-search-min",
-        title: "5. 旋转数组找最小的（大胆）",
-        content: `
+            },
+            {
+                id: "binary-search-min",
+                title: "5. 旋转数组找最小的（大胆）",
+                content: `
 ### 旋转数组找最小值
 
 **核心思想**：最小值一定在"断崖"处。
@@ -250,11 +250,11 @@ public int findMin(int[] nums) {
 
 > **注意**：这里用 \`left < right\` 而不是 \`left <= right\`，因为我们要找的是最小值的位置，不是某个特定值。
 `
-      },
-      {
-        id: "binary-search-median",
-        title: "6. 两个数组找中位数",
-        content: `
+            },
+            {
+                id: "binary-search-median",
+                title: "6. 两个数组找中位数",
+                content: `
 ### 两个有序数组的中位数
 
 **核心思想**：在较短的数组上二分，找到一个分割点，使得左边所有元素都小于右边。
@@ -297,19 +297,19 @@ public double findMedianSortedArrays(int[] nums1, int[] nums2) {
 }
 \`\`\`
 `
-      }
-    ]
-  },
-  {
-    id: "backtracking",
-    title: "回溯算法",
-    icon: "🔄",
-    tagClass: "bg-gradient-to-r from-purple-500 to-pink-500",
-    sections: [
-      {
-        id: "backtracking-core",
-        title: "回溯核心思想",
-        content: `
+            }
+        ]
+    },
+    {
+        id: "backtracking",
+        title: "回溯算法",
+        icon: "🔄",
+        tagClass: "bg-gradient-to-r from-purple-500 to-pink-500",
+        sections: [
+            {
+                id: "backtracking-core",
+                title: "回溯核心思想",
+                content: `
 ### 回溯算法的本质
 
 回溯算法本质上是一种**穷举**算法，通过**递归**的方式遍历所有可能的解。
@@ -338,11 +338,11 @@ void backtrack(路径, 选择列表) {
 
 > **回溯的精髓**：在递归之前"做选择"，在递归之后"撤销选择"。
 `
-      },
-      {
-        id: "backtracking-permutation",
-        title: "1. 全排列",
-        content: `
+            },
+            {
+                id: "backtracking-permutation",
+                title: "1. 全排列",
+                content: `
 ### 全排列问题
 
 给定一个不含重复数字的数组，返回其所有可能的全排列。
@@ -384,11 +384,11 @@ void backtrack(int[] nums, List<Integer> path, boolean[] used) {
 }
 \`\`\`
 `
-      },
-      {
-        id: "backtracking-subset",
-        title: "2. 子集",
-        content: `
+            },
+            {
+                id: "backtracking-subset",
+                title: "2. 子集",
+                content: `
 ### 子集问题
 
 给定一个整数数组，返回所有可能的子集。
@@ -423,11 +423,11 @@ void backtrack(int[] nums, int start, List<Integer> path) {
 
 > **关键点**：用 \`start\` 参数控制遍历起点，避免产生重复子集。
 `
-      },
-      {
-        id: "backtracking-phone",
-        title: "3. 电话字符",
-        content: `
+            },
+            {
+                id: "backtracking-phone",
+                title: "3. 电话字符",
+                content: `
 ### 电话号码的字母组合
 
 **必须要有个"手指头" (Index)**：我们需要知道现在在处理到 "23" 里的哪一位了。是刚开始按 '2'，还是已经按完了 '3'？所以需要一个 \`int index\`。
@@ -488,11 +488,11 @@ void backtrack(String digits, int index, StringBuilder path) {
 }
 \`\`\`
 `
-      },
-      {
-        id: "backtracking-combination-sum",
-        title: "4. 组合总和问题",
-        content: `
+            },
+            {
+                id: "backtracking-combination-sum",
+                title: "4. 组合总和问题",
+                content: `
 ### 组合总和
 
 用个排序然后就是target是这里需要注意的一直是剩的目标大小。
@@ -524,11 +524,11 @@ void backtrack(int[] candidates, int target, int start, List<Integer> path) {
 }
 \`\`\`
 `
-      },
-      {
-        id: "backtracking-parentheses",
-        title: "5. 括号匹配",
-        content: `
+            },
+            {
+                id: "backtracking-parentheses",
+                title: "5. 括号匹配",
+                content: `
 ### 生成有效括号
 
 **核心规则**：
@@ -566,11 +566,11 @@ void backtrack(int n, int left, int right, StringBuilder path) {
 }
 \`\`\`
 `
-      },
-      {
-        id: "backtracking-word-search",
-        title: "6. 单词追踪",
-        content: `
+            },
+            {
+                id: "backtracking-word-search",
+                title: "6. 单词追踪",
+                content: `
 ### 单词搜索
 
 在二维网格中搜索单词，可以上下左右移动。
@@ -622,11 +622,11 @@ boolean backtrack(char[][] board, String word, int index,
 }
 \`\`\`
 `
-      },
-      {
-        id: "backtracking-word-break",
-        title: "7. 单词切割",
-        content: `
+            },
+            {
+                id: "backtracking-word-break",
+                title: "7. 单词切割",
+                content: `
 ### 单词拆分（回溯 + 记忆化）
 
 判断字符串是否可以被拆分为字典中的单词。
@@ -656,11 +656,11 @@ boolean backtrack(String s, int start, Set<String> dict, Boolean[] memo) {
 }
 \`\`\`
 `
-      },
-      {
-        id: "backtracking-nqueens",
-        title: "8. 八皇后问题",
-        content: `
+            },
+            {
+                id: "backtracking-nqueens",
+                title: "8. 八皇后问题",
+                content: `
 ### N皇后问题
 
 在 N×N 棋盘上放置 N 个皇后，使它们互不攻击。
@@ -722,19 +722,19 @@ List<String> construct(char[][] board) {
 }
 \`\`\`
 `
-      }
-    ]
-  },
-  {
-    id: "greedy",
-    title: "贪心算法",
-    icon: "💰",
-    tagClass: "bg-gradient-to-r from-green-500 to-emerald-500",
-    sections: [
-      {
-        id: "greedy-stock",
-        title: "1. 股票买卖",
-        content: `
+            }
+        ]
+    },
+    {
+        id: "greedy",
+        title: "贪心算法",
+        icon: "💰",
+        tagClass: "bg-gradient-to-r from-green-500 to-emerald-500",
+        sections: [
+            {
+                id: "greedy-stock",
+                title: "1. 股票买卖",
+                content: `
 ### 买卖股票的最佳时机
 
 **核心思想**：最小买入进行检查然后最大利润一直更新。
@@ -753,11 +753,11 @@ public int maxProfit(int[] prices) {
 
 > **贪心策略**：始终记录到目前为止的最低价格，计算当前价格卖出的利润。
 `
-      },
-      {
-        id: "greedy-jump",
-        title: "2. 跳跃游戏",
-        content: `
+            },
+            {
+                id: "greedy-jump",
+                title: "2. 跳跃游戏",
+                content: `
 ### 跳跃游戏
 
 判断能否从起点跳到终点。
@@ -777,11 +777,11 @@ public boolean canJump(int[] nums) {
 }
 \`\`\`
 `
-      },
-      {
-        id: "greedy-jump-min",
-        title: "3. 跳跃游戏II（最少次数）",
-        content: `
+            },
+            {
+                id: "greedy-jump-min",
+                title: "3. 跳跃游戏II（最少次数）",
+                content: `
 ### 跳跃游戏 II - 最少跳跃次数
 
 **为什么是 \`length - 1\`？** 这是最大的坑。因为当我们到达最后一个元素时，我们已经不需要再跳了（所以我们就是直接到前一个就结束了到索引下标的n-2的位置结束）。
@@ -811,19 +811,19 @@ public int jump(int[] nums) {
 
 > **关键理解**：\`currentEnd\` 是当前这一跳能到达的最远边界，到达边界时必须再跳一次。
 `
-      }
-    ]
-  },
-  {
-    id: "dp",
-    title: "动态规划",
-    icon: "📊",
-    tagClass: "bg-gradient-to-r from-orange-500 to-amber-500",
-    sections: [
-      {
-        id: "dp-knapsack",
-        title: "0-1背包 vs 完全背包",
-        content: `
+            }
+        ]
+    },
+    {
+        id: "dp",
+        title: "动态规划",
+        icon: "📊",
+        tagClass: "bg-gradient-to-r from-orange-500 to-amber-500",
+        sections: [
+            {
+                id: "dp-knapsack",
+                title: "0-1背包 vs 完全背包",
+                content: `
 ### 背包问题分类
 
 #### 1. 怎么区分？看"拿取次数"
@@ -851,11 +851,11 @@ public int jump(int[] nums) {
 
 > **心法**：求个数（Min/Max）不挑食，随便怎么循环；求方案数（How many ways）要小心，先物品是组合，先背包是排列。
 `
-      },
-      {
-        id: "dp-coin-change",
-        title: "零钱兑换",
-        content: `
+            },
+            {
+                id: "dp-coin-change",
+                title: "零钱兑换",
+                content: `
 ### 零钱兑换
 
 **初始化**：\`int[] dp = new int[amount + 1];\`
@@ -893,11 +893,11 @@ public int coinChange(int[] coins, int amount) {
 }
 \`\`\`
 `
-      },
-      {
-        id: "dp-subset-sum",
-        title: "分割等和子集",
-        content: `
+            },
+            {
+                id: "dp-subset-sum",
+                title: "分割等和子集",
+                content: `
 ### 分割等和子集
 
 **场景：双胞胎分家产**
@@ -944,11 +944,11 @@ public boolean canPartition(int[] nums) {
 
 > **❤️所以就是你的大小是用小钱开始，但是背包容量从最大开始算**
 `
-      },
-      {
-        id: "dp-house-robber",
-        title: "打家劫舍",
-        content: `
+            },
+            {
+                id: "dp-house-robber",
+                title: "打家劫舍",
+                content: `
 ### 打家劫舍
 
 | **数学符号** | **代码变量** | **含义** |
@@ -984,11 +984,11 @@ public int rob(int[] nums) {
 }
 \`\`\`
 `
-      },
-      {
-        id: "dp-lis",
-        title: "最长递增子序列",
-        content: `
+            },
+            {
+                id: "dp-lis",
+                title: "最长递增子序列",
+                content: `
 ### 最长递增子序列 (LIS)
 
 **初始化 (\`Arrays.fill(dp, 1)\`)**：
@@ -1022,11 +1022,11 @@ public int lengthOfLIS(int[] nums) {
 }
 \`\`\`
 `
-      },
-      {
-        id: "dp-max-product",
-        title: "乘积最大子数组",
-        content: `
+            },
+            {
+                id: "dp-max-product",
+                title: "乘积最大子数组",
+                content: `
 ### 乘积最大子数组
 
 **为什么要带两个背包？** 因为前面可能有个很坏的"负数蘑菇"把你变成了很小的蚂蚁（也就是一个很大的负数，比如 -100）。一般人可能觉得"完了，我输了"。但在高手的眼里，这个 -100 是个**宝贝**！为什么？因为万一前面还有一个"负数蘑菇"（比如 -2）呢？只要那个 -100 再碰到 -2，瞬间就会变成 +200 的超级巨人！
@@ -1065,11 +1065,11 @@ public int maxProduct(int[] nums) {
 }
 \`\`\`
 `
-      },
-      {
-        id: "dp-word-break",
-        title: "单词拆分（DP版）",
-        content: `
+            },
+            {
+                id: "dp-word-break",
+                title: "单词拆分（DP版）",
+                content: `
 ### 单词拆分 - 动态规划
 
 **HashSet 使用**：理解为什么查表要用 Set。
@@ -1111,11 +1111,11 @@ public boolean wordBreak(String s, List<String> wordDict) {
 }
 \`\`\`
 `
-      },
-      {
-        id: "dp-longest-valid-parentheses",
-        title: "最长有效括号",
-        content: `
+            },
+            {
+                id: "dp-longest-valid-parentheses",
+                title: "最长有效括号",
+                content: `
 ### 最长有效括号
 
 **目标**：用"搭积木"的比喻解释核心逻辑。
@@ -1163,11 +1163,11 @@ public int longestValidParentheses(String s) {
 }
 \`\`\`
 `
-      },
-      {
-        id: "dp-longest-palindrome",
-        title: "最长回文子串",
-        content: `
+            },
+            {
+                id: "dp-longest-palindrome",
+                title: "最长回文子串",
+                content: `
 ### 最长回文子串 - 中心扩展法
 
 **擂台赛模式 (The Big Picture)**
@@ -1221,11 +1221,11 @@ int expandAroundCenter(String s, int left, int right) {
 }
 \`\`\`
 `
-      },
-      {
-        id: "dp-lcs",
-        title: "最长公共子序列",
-        content: `
+            },
+            {
+                id: "dp-lcs",
+                title: "最长公共子序列",
+                content: `
 ### 最长公共子序列 (LCS)
 
 **1. 状态定义** \`int[][] dp = new int[m + 1][n + 1];\`
@@ -1268,11 +1268,11 @@ public int longestCommonSubsequence(String text1, String text2) {
 }
 \`\`\`
 `
-      },
-      {
-        id: "dp-edit-distance",
-        title: "编辑距离",
-        content: `
+            },
+            {
+                id: "dp-edit-distance",
+                title: "编辑距离",
+                content: `
 ### 编辑距离
 
 **1. 核心定义与状态**
@@ -1334,11 +1334,11 @@ public int minDistance(String word1, String word2) {
 }
 \`\`\`
 `
-      },
-      {
-        id: "dp-sentinel",
-        title: "哨兵与数组大小",
-        content: `
+            },
+            {
+                id: "dp-sentinel",
+                title: "哨兵与数组大小",
+                content: `
 ### 什么时候用哨兵（Sentinel）？即 \`size + 1\`
 
 **核心口诀**：
@@ -1386,19 +1386,19 @@ public int minDistance(String word1, String word2) {
 - 如果"0"代表**"没有东西/空"** -> **开 N+1，返回 N，用 i-1 取值**。
 - 如果"0"代表**"第0号元素/第0行"** -> **开 N，返回 N-1，用 i 取值**。
 `
-      }
-    ]
-  },
-  {
-    id: "index-boundary",
-    title: "索引边界",
-    icon: "📐",
-    tagClass: "bg-gradient-to-r from-red-500 to-rose-500",
-    sections: [
-      {
-        id: "index-formula",
-        title: "三种区间公式",
-        content: `
+            }
+        ]
+    },
+    {
+        id: "index-boundary",
+        title: "索引边界",
+        icon: "📐",
+        tagClass: "bg-gradient-to-r from-red-500 to-rose-500",
+        sections: [
+            {
+                id: "index-formula",
+                title: "三种区间公式",
+                content: `
 ### ⏳ 一张表秒懂
 
 | **公式** | **对应的区间** | **核心逻辑** | **典型应用场景** | **直觉口诀** |
@@ -1465,11 +1465,11 @@ public int minDistance(String word1, String word2) {
 结果:  6 - 2 - 1 = 3
 \`\`\`
 `
-      },
-      {
-        id: "index-boundary-handling",
-        title: "边框越界处理思考",
-        content: `
+            },
+            {
+                id: "index-boundary-handling",
+                title: "边框越界处理思考",
+                content: `
 ### 边框越界处理思考
 
 这种"上来就分段处理"的写法，实际上是一种**"分而治之"的工程思维**。它把一个复杂的 2D 问题，拆解成了"边缘特殊处理"和"中心通用处理"两个部分，从而**规避了在主循环里写一堆恶心的 \`if (i == 0 || j == 0)\` 判断**。
@@ -1550,19 +1550,19 @@ public int minDistance(String word1, String word2) {
 - 终点坐标是 \`(行数-1, 列数-1)\`。
 - \`return grid[m-1][n-1]\`。
 `
-      }
-    ]
-  },
-  {
-    id: "stack-heap",
-    title: "栈与堆",
-    icon: "📚",
-    tagClass: "bg-gradient-to-r from-indigo-500 to-violet-500",
-    sections: [
-      {
-        id: "monotonic-stack",
-        title: "单调栈",
-        content: `
+            }
+        ]
+    },
+    {
+        id: "stack-heap",
+        title: "栈与堆",
+        icon: "📚",
+        tagClass: "bg-gradient-to-r from-indigo-500 to-violet-500",
+        sections: [
+            {
+                id: "monotonic-stack",
+                title: "单调栈",
+                content: `
 ### 单调栈核心计算
 
 **哨兵机制 (The Sentinel)**
@@ -1613,11 +1613,11 @@ public int largestRectangleArea(int[] heights) {
 }
 \`\`\`
 `
-      },
-      {
-        id: "heap-basics",
-        title: "堆的应用",
-        content: `
+            },
+            {
+                id: "heap-basics",
+                title: "堆的应用",
+                content: `
 ### 堆的三种典型应用
 
 #### 1. 直接小根堆：然后把顶的出来
@@ -1704,19 +1704,19 @@ class MedianFinder {
 }
 \`\`\`
 `
-      }
-    ]
-  },
-  {
-    id: "tricks",
-    title: "技巧专题",
-    icon: "🛠️",
-    tagClass: "bg-gradient-to-r from-teal-500 to-cyan-500",
-    sections: [
-      {
-        id: "tricks-majority",
-        title: "1. 众数（摩尔投票法）",
-        content: `
+            }
+        ]
+    },
+    {
+        id: "tricks",
+        title: "技巧专题",
+        icon: "🛠️",
+        tagClass: "bg-gradient-to-r from-teal-500 to-cyan-500",
+        sections: [
+            {
+                id: "tricks-majority",
+                title: "1. 众数（摩尔投票法）",
+                content: `
 ### 摩尔投票法
 
 **核心思想**：不同元素互相抵消，最后剩下的就是众数。
@@ -1739,11 +1739,11 @@ public int majorityElement(int[] nums) {
 
 > **前提条件**：众数出现次数超过 n/2。
 `
-      },
-      {
-        id: "tricks-dutch-flag",
-        title: "2. 荷兰国旗问题",
-        content: `
+            },
+            {
+                id: "tricks-dutch-flag",
+                title: "2. 荷兰国旗问题",
+                content: `
 ### 处理相同元素相邻（荷兰国旗问题）
 
 将数组分成三部分：小于、等于、大于某个值。
@@ -1779,11 +1779,11 @@ void swap(int[] nums, int i, int j) {
 }
 \`\`\`
 `
-      },
-      {
-        id: "tricks-next-permutation",
-        title: "3. 下一个排列",
-        content: `
+            },
+            {
+                id: "tricks-next-permutation",
+                title: "3. 下一个排列",
+                content: `
 ### 下一个排列
 
 找到下一个字典序更大的排列。
@@ -1831,11 +1831,11 @@ void reverse(int[] nums, int left, int right) {
 }
 \`\`\`
 `
-      },
-      {
-        id: "tricks-floyd",
-        title: "4. 弗洛伊德龟兔赛跑",
-        content: `
+            },
+            {
+                id: "tricks-floyd",
+                title: "4. 弗洛伊德龟兔赛跑",
+                content: `
 ### 相遇问题（弗洛伊德龟兔赛跑）
 
 用于检测链表中的环，以及找到环的入口。
@@ -1876,16 +1876,143 @@ public ListNode detectCycle(ListNode head) {
 - 所以 \`a + b = nc\`，即 \`a = nc - b = (n-1)c + (c-b)\`
 - 这意味着从起点走 \`a\` 步，等于从相遇点走 \`(n-1)\` 圈再走 \`c-b\` 步，都会到达环入口
 `
-      }
-    ]
-  }
+            }
+        ]
+    },
+    {
+        id: "graph",
+        title: "图论算法",
+        icon: "🕸️",
+        tagClass: "bg-gradient-to-r from-fuchsia-500 to-pink-500",
+        sections: [
+            {
+                id: "graph-bfs-rotting-oranges",
+                title: "1. 腐烂的橘子 (BFS)",
+                content: `
+### 腐烂的橘子 (Rotting Oranges)
+
+这是一道标准的 **多源 BFS (Breadth-First Search)** 题目。
+
+#### 核心思维：病毒扩散模型
+
+想象这是一个 **"丧尸围城"** 的故事。
+- **腐烂橘子**：丧尸（Source）。
+- **新鲜橘子**：人类（Target）。
+- **空格子**：墙壁。
+- **每分钟**：丧尸可以向上下左右四个方向咬人，被咬的人下一分钟也会变成丧尸。
+
+我们要求的是：**所有人类变成丧尸需要多少分钟？**
+
+---
+
+### 💡 幼儿园大班解题法 (The Kindergarten Guide)
+
+#### 1. 急诊室挂号 (The Queue)
+BFS 的核心是 **队列 (Queue)**。这就好比医院的急诊室。
+- 开始时，所有 **"0号病人"** (一开始就烂的橘子) 都在排队。
+- 医生 (CPU) 每次看一个病人，问他："你旁边有没有健康人？有的话咬一口。"
+- 被咬的人（新丧尸）拿着号，自觉去队尾排队，等着下一轮去咬别人。
+
+#### 2. 掐表计时 (The Stopwatch) —— 关键点！
+很多同学写 BFS 容易漏掉这一步：**怎么计算是第几分钟？**
+
+你不能看一个病人就过一分钟。而是一批！
+比如现在的队列里有 5 个丧尸，这 5 个是 **"同一批"** 的。
+我们要把这 5 个人 **"一次性处理完"**，才算过了 1 分钟。
+
+> **变量 \`size\` 就是那个"暂停键"**。
+> 在每一轮开始时，\`int size = queue.size();\`
+> 这意味着："现在的这 \`size\` 个人，是这一分钟的全部工作量。等处理完这 \`size\` 个人，我再按秒表，时间 +1。"
+
+#### 3. 幸存者名单 (The Survivor List)
+我们需要一个变量 \`freshCount\`。
+- 一开始数数有多少个健康人。
+- 每次有人被咬了，\`freshCount--\`。
+- 最后如果 \`freshCount > 0\`，说明有幸存者躲在墙角（永远被墙隔着，咬不到），返回 -1。
+
+---
+
+### 代码实现 (Java)
+
+\`\`\`java
+public int orangesRotting(int[][] grid) {
+    if (grid == null || grid.length == 0) return 0;
+    
+    int rows = grid.length;
+    int cols = grid[0].length;
+    
+    Queue<int[]> queue = new LinkedList<>();
+    int freshCount = 0;
+    
+    // 1. 全局扫描：找出所有 0号病人，并统计幸存者
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (grid[i][j] == 2) {
+                queue.offer(new int[]{i, j}); // 丧尸入队
+            } else if (grid[i][j] == 1) {
+                freshCount++; // 统计人类
+            }
+        }
+    }
+    
+    // 如果一开始就没人类，直接 0 分钟
+    if (freshCount == 0) return 0;
+    
+    int minutes = 0;
+    int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}}; // 十字架方向（Magic Cross）
+    
+    // 2. BFS 开始扩散
+    while (!queue.isEmpty()) {
+        int size = queue.size(); // ⏳ 这里的 snapshot 很关键！
+        boolean infected = false; // 标记这一轮有没有人被咬
+        
+        for (int i = 0; i < size; i++) {
+            int[] point = queue.poll();
+            int r = point[0];
+            int c = point[1];
+            
+            for (int[] dir : dirs) { // 向四个方向咬
+                int nr = r + dir[0];
+                int nc = c + dir[1];
+                
+                // 边界检查 + 必须是新鲜橘子
+                if (nr >= 0 && nr < rows && nc >= 0 && nc < cols && grid[nr][nc] == 1) {
+                    grid[nr][nc] = 2; // 咬一口，变丧尸
+                    freshCount--;     // 幸存者 -1
+                    queue.offer(new int[]{nr, nc}); // 新丧尸去排队
+                    infected = true;
+                }
+            }
+        }
+        
+        if (infected) minutes++; // 只有真的咬到人了，时间才流逝
+    }
+    
+    // 3. 检查是否有幸存者
+    return freshCount == 0 ? minutes : -1;
+}
+\`\`\`
+
+#### 细节避坑：
+
+1.  **什么时候 mins++？**
+    *   有的写法是放在 \`while\` 循环最后，然后最后返回 \`mins - 1\`（因为最后一层扩散出去虽然进了队列，但没有新鲜橘子可咬了，多算了一次）。
+    *   我的写法是：\`boolean infected\`。只有**确实有橘子变烂**了，才算过了一分钟。这样逻辑更符合直觉。
+
+2.  **\`grid[nr][nc] = 2\` 什么时候标？**
+    *   **一定要在入队的时候马上标！** 不要等到出队的时候再标。
+    *   如果不马上标为 2，同一个新鲜橘子可能会被两个不同的丧尸"同时发现"并入队两次，导致重复计算甚至错误。
+`
+            }
+        ]
+    }
 ];
 
 export function getCategoryById(id: string): Category | undefined {
-  return algorithmData.find(cat => cat.id === id);
+    return algorithmData.find(cat => cat.id === id);
 }
 
 export function getSectionById(categoryId: string, sectionId: string): Section | undefined {
-  const category = getCategoryById(categoryId);
-  return category?.sections.find(sec => sec.id === sectionId);
+    const category = getCategoryById(categoryId);
+    return category?.sections.find(sec => sec.id === sectionId);
 }
