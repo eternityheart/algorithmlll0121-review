@@ -13,7 +13,7 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
   }, [content]);
 
   return (
-    <div 
+    <div
       className={`markdown-content ${className}`}
       dangerouslySetInnerHTML={{ __html: renderedContent }}
     />
@@ -75,6 +75,9 @@ function parseMarkdown(text: string): string {
   // 处理斜体 *text*
   result = result.replace(/\*([^*]+)\*/g, '<em>$1</em>');
 
+  // 处理图片 ![alt](src)
+  result = result.replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" class="content-image my-4 rounded-lg shadow-md mx-auto max-w-full" />');
+
   // 处理引用 > text
   result = result.replace(/^> (.*$)/gm, '<blockquote class="content-blockquote">$1</blockquote>');
 
@@ -121,19 +124,19 @@ function processTable(text: string): string {
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    
+
     // 检测表格行（包含 | 的行）
     if (line.includes('|') && line.trim().startsWith('|')) {
       if (!inTable) {
         inTable = true;
         tableRows = [];
       }
-      
+
       // 跳过分隔行 |---|---|
       if (/^\|[\s-:|]+\|$/.test(line.trim())) {
         continue;
       }
-      
+
       tableRows.push(line);
     } else {
       if (inTable && tableRows.length > 0) {
@@ -157,12 +160,12 @@ function renderTable(rows: string[]): string {
   if (rows.length === 0) return '';
 
   let html = '<div class="table-wrapper"><table class="content-table">';
-  
+
   rows.forEach((row, index) => {
     const cells = row.split('|').filter(cell => cell.trim() !== '');
     const tag = index === 0 ? 'th' : 'td';
     const rowClass = index === 0 ? 'table-header' : 'table-row';
-    
+
     html += `<tr class="${rowClass}">`;
     cells.forEach(cell => {
       html += `<${tag} class="table-cell">${cell.trim()}</${tag}>`;
