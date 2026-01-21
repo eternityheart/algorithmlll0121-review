@@ -5,7 +5,7 @@
 
 import { cn } from "@/lib/utils";
 import { algorithmData, type Category } from "@/data/algorithmData";
-import { ChevronDown, ChevronRight, BookOpen, Menu, X } from "lucide-react";
+import { ChevronDown, ChevronRight, BookOpen, Menu, X, FileText } from "lucide-react";
 import { useState } from "react";
 
 interface SidebarProps {
@@ -99,9 +99,21 @@ export default function Sidebar({
             ))}
           </nav>
 
-          {/* 底部信息 */}
-          <div className="p-4 border-t border-border/50">
-            <p className="text-xs text-muted-foreground text-center">
+          {/* 底部链接 */}
+          <div className="p-4 border-t border-border/50 space-y-2">
+            <a
+              href="/summary.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 p-2 rounded-lg hover:bg-accent/50 text-sm font-medium text-blue-600 transition-all hover:scale-105 group"
+            >
+              <div className="w-8 h-8 rounded-lg bg-blue-50 group-hover:bg-blue-100 flex items-center justify-center text-blue-600 transition-colors shadow-sm">
+                <FileText size={16} />
+              </div>
+              <span>2025 期末总结 PPT</span>
+            </a>
+
+            <p className="text-xs text-muted-foreground text-center pt-2 border-t border-border/30">
               共 {algorithmData.reduce((acc, cat) => acc + cat.sections.length, 0)} 个知识点
             </p>
           </div>

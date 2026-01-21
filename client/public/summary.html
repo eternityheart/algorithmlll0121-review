@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025-2026 研一上期末总结 - 刘明鑫</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+
+        /* 每一页都至少占满一个屏幕高度，模拟PPT效果 */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            padding: 4rem 2rem;
+            border-bottom: 1px dashed #e5e7eb;
+        }
+
+        /* 打印样式优化 */
+        @media print {
+            section {
+                height: 100vh;
+                page-break-after: always;
+                border-bottom: none;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            font-size: 0.875rem;
+            color: #9ca3af;
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* 针对DeepSeek部分的特殊样式 */
+        .tech-card {
+            border-left-width: 4px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- 悬浮导航 -->
+    <nav class="fixed top-0 right-0 p-6 z-50 no-print">
+        <div class="bg-white/80 backdrop-blur rounded-full px-4 py-2 shadow-sm border border-slate-200 text-sm">
+            <a href="#cover" class="hover:text-blue-600 px-2">封面</a>
+            <a href="#courses" class="hover:text-blue-600 px-2">课程</a>
+            <a href="#research-1" class="hover:text-blue-600 px-2">ML基础</a>
+            <a href="#research-4" class="hover:text-blue-600 px-2">架构演进</a>
+            <a href="#research-5-1" class="hover:text-blue-600 px-2">DeepSeek</a>
+            <a href="#tech-stack" class="hover:text-blue-600 px-2 font-bold text-blue-700">科技调研</a>
+            <button onclick="window.print()" class="ml-2 text-blue-600 font-bold"><i class="fas fa-print"></i> 打印/PDF</button>
+        </div>
+    </nav>
+
+    <!-- Slide 1: 第一部分：封面 -->
+    <section id="cover" class="text-white text-center" style="background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.8)), url('905650fe9a6b44fbd867bf4b3bb42207.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+        <div class="max-w-4xl mx-auto animate-fade-in-up">
+            <div class="mb-8">
+                <span class="inline-block px-3 py-1 border border-blue-400 text-blue-300 rounded-full text-sm mb-4">
+                    2025-2026学年 第一学期
+                </span>
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight text-shadow-lg">
+                    期末总结与展望
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-200 font-light">
+                    研一上学期工作汇报
+                </p>
+            </div>
+
+            <div class="mt-16 inline-block text-left bg-white/10 backdrop-blur-md p-8 rounded-xl border border-white/20 shadow-2xl">
+                <div class="flex items-center mb-3">
+                    <div class="w-8 text-blue-400"><i class="fas fa-user"></i></div>
+                    <div class="text-lg">汇报人：<span class="font-bold text-white">刘明鑫</span></div>
+                </div>
+                <div class="flex items-center mb-3">
+                    <div class="w-8 text-blue-400"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="text-lg">年级：<span class="text-slate-200">2025级硕士研究生（研一）</span></div>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-8 text-blue-400"><i class="far fa-calendar-alt"></i></div>
+                    <div class="text-lg">日期：<span class="text-slate-200">2026.1.22</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number text-slate-400">01 / 10</div>
+    </section>
+
+    <!-- Slide 2: 第二部分：上课学习总结 -->
+    <section id="courses" class="bg-white">
+        <div class="max-w-7xl mx-auto w-full h-full flex flex-col justify-center">
+            <h2 class="text-3xl font-bold text-slate-900 mb-2 border-l-4 border-blue-600 pl-4">上课学习总结</h2>
+            <p class="text-slate-500 mb-6 pl-5">本学期修读课程清单与核心知识体系回顾</p>
+
+            <div class="flex flex-col lg:flex-row gap-6 h-auto lg:h-[70vh]">
+                <!-- 左侧：课程列表 -->
+                <div class="lg:w-1/3 bg-slate-50 p-5 rounded-xl border border-slate-100 flex flex-col justify-center">
+                    <h3 class="text-xl font-bold mb-4 flex items-center text-blue-800">
+                        <i class="fas fa-list-ul mr-2"></i> 修读课程 (9门)
+                    </h3>
+                    <div class="flex flex-col justify-between h-full">
+                        <!-- 核心专业课 -->
+                        <div class="space-y-2">
+                            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">核心专业课</div>
+                            <div class="grid grid-cols-1 gap-2">
+                                <div class="bg-white p-2 rounded border-l-4 border-blue-500 flex items-center shadow-sm">
+                                    <i class="fas fa-network-wired text-blue-500 mr-2 text-sm w-4 text-center"></i>
+                                    <div class="flex-1">
+                                        <div class="font-bold text-slate-800 text-sm leading-none">网络计算</div>
+                                        <div class="text-[10px] text-slate-400 scale-90 origin-left">Network Computing</div>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-2 rounded border-l-4 border-blue-500 flex items-center shadow-sm">
+                                    <i class="fas fa-brain text-blue-500 mr-2 text-sm w-4 text-center"></i>
+                                    <div class="flex-1">
+                                        <div class="font-bold text-slate-800 text-sm leading-none">深度学习</div>
+                                        <div class="text-[10px] text-slate-400 scale-90 origin-left">Deep Learning</div>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-2 rounded border-l-4 border-blue-500 flex items-center shadow-sm">
+                                    <i class="fas fa-database text-blue-500 mr-2 text-sm w-4 text-center"></i>
+                                    <div class="flex-1">
+                                        <div class="font-bold text-slate-800 text-sm leading-none">数据科学与知识发现</div>
+                                        <div class="text-[10px] text-slate-400 scale-90 origin-left">Data Science</div>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-2 rounded border-l-4 border-blue-500 flex items-center shadow-sm">
+                                    <i class="fas fa-code-branch text-blue-500 mr-2 text-sm w-4 text-center"></i>
+                                    <div class="flex-1">
+                                        <div class="font-bold text-slate-800 text-sm leading-none">软件需求工程</div>
+                                        <div class="text-[10px] text-slate-400 scale-90 origin-left">Requirements Eng.</div>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-2 rounded border-l-4 border-blue-500 flex items-center shadow-sm">
+                                    <i class="fas fa-chart-line text-blue-500 mr-2 text-sm w-4 text-center"></i>
+                                    <div class="flex-1">
+                                        <div class="font-bold text-slate-800 text-sm leading-none">最优化方法</div>
+                                        <div class="text-[10px] text-slate-400 scale-90 origin-left">Optimization</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 技能与公共课 -->
+                        <div class="mt-2 space-y-2">
+                            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">素养与公共课</div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="bg-white p-2 rounded border-l-4 border-purple-500 flex items-center shadow-sm">
+                                    <div class="truncate"><div class="font-bold text-slate-800 text-xs">学术写作</div></div>
+                                </div>
+                                <div class="bg-white p-2 rounded border-l-4 border-purple-500 flex items-center shadow-sm">
+                                    <div class="truncate"><div class="font-bold text-slate-800 text-xs">专业英语</div></div>
+                                </div>
+                                <div class="bg-white p-2 rounded border-l-4 border-purple-500 flex items-center shadow-sm">
+                                    <div class="truncate"><div class="font-bold text-slate-800 text-xs">知识产权</div></div>
+                                </div>
+                                <div class="bg-white p-2 rounded border-l-4 border-red-500 flex items-center shadow-sm">
+                                    <div class="truncate"><div class="font-bold text-slate-800 text-xs">特色理论</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右侧：单图展示区 -->
+                <div class="lg:w-2/3 flex flex-col h-full">
+                    <div class="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden flex flex-col h-full">
+                        <div class="p-3 border-b border-slate-100 bg-gray-50 flex justify-between items-center flex-shrink-0">
+                            <h4 class="font-bold text-lg text-slate-800">网络计算知识体系架构</h4>
+                            <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">核心图解</span>
+                        </div>
+                        <div class="bg-gray-100 relative group flex-grow w-full flex items-center justify-center p-4 overflow-hidden">
+                            <img src="image_201ffc.png" alt="网络计算生态体系" class="w-full h-full object-contain">
+                        </div>
+                        <div class="p-4 bg-slate-50/90 flex-shrink-0">
+                            <div class="flex items-start">
+                                <i class="fas fa-quote-left text-blue-300 text-xl mr-3 flex-shrink-0 mt-1"></i>
+                                <p class="text-slate-700 text-sm md:text-base leading-relaxed font-medium">
+                                    该图展示了网络计算的<span class="text-blue-600 font-bold">四层生态体系</span>：以<span class="underline decoration-blue-300 decoration-2">底层计算模式和基础设施</span>为奠基，支撑<span class="underline decoration-blue-300 decoration-2">中层的云边资源架构</span>，最终服务于<span class="underline decoration-blue-300 decoration-2">顶层的用户交互感知</span>。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">02 / 10</div>
+    </section>
+
+    <!-- Slide 3: ML-1 -->
+    <section id="research-1" class="bg-slate-50">
+        <div class="max-w-7xl mx-auto w-full">
+            <div class="mb-6 border-l-4 border-blue-600 pl-4">
+                <h2 class="text-3xl font-bold text-slate-900">组会总结 Part 1：机器学习核心</h2>
+                <p class="text-slate-500">第一阵营：监督学习 (Supervised Learning)</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- 1. 线性回归 -->
+                <div class="bg-white p-5 rounded-lg border border-blue-100 shadow-sm hover:shadow-md transition">
+                    <h3 class="font-bold text-lg text-blue-800 mb-2">1. 线性回归</h3>
+                    <div class="text-sm text-slate-600 space-y-2">
+                        <p><span class="font-bold text-slate-800">核心：</span>画一条线让数据点垂直距离之和最小。</p>
+                        <p><span class="font-bold text-slate-800">含义：</span>拟合连续值的基石，最小二乘法。</p>
+                        <div class="bg-slate-50 p-2 rounded text-xs border border-slate-100 mt-2">
+                            <span class="text-red-500 font-bold">Q:</span> 异常值怎么办？<br>
+                            <span class="text-green-600 font-bold">A:</span> 用正则化(L1/L2)限制权重。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. 逻辑回归 -->
+                <div class="bg-white p-5 rounded-lg border border-blue-100 shadow-sm hover:shadow-md transition">
+                    <h3 class="font-bold text-lg text-blue-800 mb-2">2. 逻辑回归</h3>
+                    <div class="text-sm text-slate-600 space-y-2">
+                        <p><span class="font-bold text-slate-800">核心：</span>线性回归+Sigmoid，输出0-1概率。</p>
+                        <p><span class="font-bold text-slate-800">含义：</span>寻找决策边界。分类问题的基石。</p>
+                        <div class="bg-slate-50 p-2 rounded text-xs border border-slate-100 mt-2">
+                            <span class="text-red-500 font-bold">Q:</span> 为何不用线性回归？<br>
+                            <span class="text-green-600 font-bold">A:</span> 线性回归对噪声敏感且无界。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. KNN -->
+                <div class="bg-white p-5 rounded-lg border border-blue-100 shadow-sm hover:shadow-md transition">
+                    <h3 class="font-bold text-lg text-blue-800 mb-2">3. K-近邻 (KNN)</h3>
+                    <div class="text-sm text-slate-600 space-y-2">
+                        <p><span class="font-bold text-slate-800">核心：</span>物以类聚，看最近的K个邻居。</p>
+                        <p><span class="font-bold text-slate-800">含义：</span>懒惰学习，预测时才算距离。</p>
+                        <div class="bg-slate-50 p-2 rounded text-xs border border-slate-100 mt-2">
+                            <span class="text-red-500 font-bold">Q:</span> K值怎么选？<br>
+                            <span class="text-green-600 font-bold">A:</span> 太小过拟合，太大欠拟合。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. 朴素贝叶斯 -->
+                <div class="bg-white p-5 rounded-lg border border-blue-100 shadow-sm hover:shadow-md transition">
+                    <h3 class="font-bold text-lg text-blue-800 mb-2">4. 朴素贝叶斯</h3>
+                    <div class="text-sm text-slate-600 space-y-2">
+                        <p><span class="font-bold text-slate-800">核心：</span>假设特征互不相关，算概率。</p>
+                        <p><span class="font-bold text-slate-800">含义：</span>生成模型，常用于垃圾邮件分类。</p>
+                        <div class="bg-slate-50 p-2 rounded text-xs border border-slate-100 mt-2">
+                            <span class="text-red-500 font-bold">Q:</span> 特征关联咋办？<br>
+                            <span class="text-green-600 font-bold">A:</span> 效果变差，需用贝叶斯网络。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. 决策树 -->
+                <div class="bg-white p-5 rounded-lg border border-blue-100 shadow-sm hover:shadow-md transition">
+                    <h3 class="font-bold text-lg text-blue-800 mb-2">5. 决策树</h3>
+                    <div class="text-sm text-slate-600 space-y-2">
+                        <p><span class="font-bold text-slate-800">核心：</span>If-Then规则，找区分度最高的问题。</p>
+                        <p><span class="font-bold text-slate-800">含义：</span>追求纯度(信息增益/基尼系数)。</p>
+                        <div class="bg-slate-50 p-2 rounded text-xs border border-slate-100 mt-2">
+                            <span class="text-red-500 font-bold">Q:</span> 树太深？<br>
+                            <span class="text-green-600 font-bold">A:</span> 容易过拟合，需要剪枝。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. SVM (包含最优化方法) -->
+                <div class="bg-white p-5 rounded-lg border-2 border-indigo-200 shadow-md hover:shadow-lg transition relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-indigo-500 text-white text-[10px] px-2 py-1">重点掌握</div>
+                    <h3 class="font-bold text-lg text-indigo-800 mb-2">6. 支持向量机 (SVM)</h3>
+                    <div class="text-sm text-slate-600 space-y-2">
+                        <p><span class="font-bold text-slate-800">核心：</span>最大化间隔(Margin)。</p>
+                        <!-- 结合《最优化方法》 -->
+                        <div class="bg-indigo-50 p-2 rounded text-xs border border-indigo-100">
+                            <span class="font-bold text-indigo-700 block mb-1"><i class="fas fa-link mr-1"></i>结合《最优化方法》：</span>
+                            应用了<span class="font-bold">拉格朗日对偶性</span>与<span class="font-bold">KKT条件</span>。
+                        </div>
+                        <div class="bg-slate-50 p-2 rounded text-xs border border-slate-100 mt-1">
+                            <span class="text-red-500 font-bold">Q:</span> 速度慢？<br>
+                            <span class="text-green-600 font-bold">A:</span> 解二次规划问题(QP)，适合中小规模。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">03 / 10</div>
+    </section>
+
+    <!-- Slide 4: ML-2 -->
+    <section id="research-2" class="bg-white">
+        <div class="max-w-7xl mx-auto w-full">
+            <div class="mb-6 border-l-4 border-indigo-600 pl-4">
+                <h2 class="text-3xl font-bold text-slate-900">组会总结 Part 2：集成与无监督</h2>
+                <p class="text-slate-500">第二阵营：集成学习 & 第三阵营：无监督学习</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- 左列：集成学习 -->
+                <div class="space-y-6">
+                    <h3 class="text-xl font-bold text-indigo-800 flex items-center">
+                        <i class="fas fa-users mr-2"></i> 集成学习 (三个臭皮匠)
+                    </h3>
+                    
+                    <div class="bg-slate-50 p-5 rounded-lg border border-indigo-100">
+                        <div class="font-bold text-indigo-700 mb-1">1. 随机森林 (Bagging)</div>
+                        <p class="text-sm text-slate-600 mb-2">种多棵树，数据特征随机选，投票决定。</p>
+                        <p class="text-xs text-slate-500 bg-white p-2 rounded border"><span class="font-bold">作用：</span>并行策略，降低方差(Variance)，防过拟合。</p>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-lg border border-indigo-100">
+                        <div class="font-bold text-indigo-700 mb-1">2. Boosting (AdaBoost/GBDT/XGBoost)</div>
+                        <p class="text-sm text-slate-600 mb-2">接力赛，后一个专门学前一个做错的题(残差)。</p>
+                        <p class="text-xs text-slate-500 bg-white p-2 rounded border mb-2"><span class="font-bold">作用：</span>串行策略，降低偏差(Bias)，提升准确率。</p>
+                        <div class="text-xs bg-indigo-50 p-2 rounded">
+                            <span class="font-bold">Q: XGBoost强在哪？</span> 二阶泰勒展开(更准)，加正则项(防过拟合)，自动处理缺失值。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右列：无监督学习 -->
+                <div class="space-y-6">
+                    <h3 class="text-xl font-bold text-purple-800 flex items-center">
+                        <i class="fas fa-search mr-2"></i> 无监督学习 (找规律)
+                    </h3>
+
+                    <div class="bg-slate-50 p-5 rounded-lg border border-purple-100">
+                        <div class="font-bold text-purple-700 mb-1">1. K-Means 聚类</div>
+                        <p class="text-sm text-slate-600 mb-1">选K个老大，找最近站队，迭代更新。</p>
+                        <p class="text-xs text-slate-400">缺点：需指定K，对异常值敏感，只能分圆球状。</p>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-lg border border-purple-100">
+                        <div class="font-bold text-purple-700 mb-1">2. DBSCAN (密度聚类)</div>
+                        <p class="text-sm text-slate-600 mb-1">看密度，人挤就算一伙。不需要指定K。</p>
+                        <p class="text-xs text-slate-400">优点：能发现任意形状，自动识别噪音。</p>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-lg border border-purple-100">
+                        <div class="font-bold text-purple-700 mb-1">3. PCA (主成分分析)</div>
+                        <p class="text-sm text-slate-600 mb-1">投影降维，保留方差最大方向。</p>
+                        <p class="text-xs text-slate-400">作用：去冗余(如身高+腿长=身材)，减计算量，可视化。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">04 / 10</div>
+    </section>
+
+    <!-- Slide 5: ML-3 (CV) -->
+    <section id="research-3" class="bg-slate-50">
+        <div class="max-w-7xl mx-auto w-full">
+            <div class="mb-6 border-l-4 border-pink-600 pl-4">
+                <h2 class="text-3xl font-bold text-slate-900">组会总结 Part 3：深度学习与CV</h2>
+                <p class="text-slate-500">从手工特征到自动特征提取，模型架构演变与视觉任务</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- 左侧：图像处理三大任务 -->
+                <div class="lg:w-1/2 space-y-4">
+                    <h3 class="text-xl font-bold text-pink-800 mb-4"><i class="fas fa-eye mr-2"></i> 图像处理三大任务</h3>
+                    <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-pink-400">
+                        <h4 class="font-bold text-slate-800">1. 图像检测 (Object Detection)</h4>
+                        <p class="text-sm text-slate-600 mt-1">不仅分类，还要画框(定位)。</p>
+                        <div class="mt-2 text-xs grid grid-cols-2 gap-2">
+                            <span class="bg-pink-50 p-1 rounded text-pink-700">One-stage (快): YOLO, SSD</span>
+                            <span class="bg-pink-50 p-1 rounded text-pink-700">Two-stage (准): Faster R-CNN</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-pink-400">
+                        <h4 class="font-bold text-slate-800">2. 图像分割 (Segmentation)</h4>
+                        <p class="text-sm text-slate-600 mt-1">像素级分类，把物体"抠"出来。</p>
+                        <div class="mt-2 text-xs space-y-1">
+                            <div class="flex"><span class="font-bold w-20">FCN:</span> 端到端像素预测。</div>
+                            <div class="flex"><span class="font-bold w-20">U-Net:</span> 医学分割神器，边缘处理好。</div>
+                            <div class="flex"><span class="font-bold w-20">Mask R-CNN:</span> 实例分割(区分不同的人)。</div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-pink-400">
+                        <h4 class="font-bold text-slate-800">3. 图像切换/生成 (GAN)</h4>
+                        <p class="text-sm text-slate-600 mt-1">风格迁移，把白天变黑夜。</p>
+                        <p class="text-xs text-slate-500 mt-1">核心：生成器(造假) vs 判别器(找茬) 博弈。</p>
+                    </div>
+                </div>
+
+                <!-- 右侧：模型演变 -->
+                <div class="lg:w-1/2">
+                    <h3 class="text-xl font-bold text-pink-800 mb-4"><i class="fas fa-history mr-2"></i> CNN 模型架构演变</h3>
+                    <div class="relative border-l-2 border-pink-200 ml-3 space-y-6">
+                        <div class="ml-6 relative">
+                            <span class="absolute -left-[31px] top-1 w-4 h-4 bg-pink-400 rounded-full border-2 border-white"></span>
+                            <h4 class="font-bold text-slate-800">LeNet (起源)</h4>
+                            <p class="text-sm text-slate-600">定义卷积/池化/全连接。识别手写数字的祖师爷。</p>
+                        </div>
+                        <div class="ml-6 relative">
+                            <span class="absolute -left-[31px] top-1 w-4 h-4 bg-pink-500 rounded-full border-2 border-white"></span>
+                            <h4 class="font-bold text-slate-800">AlexNet (突破)</h4>
+                            <p class="text-sm text-slate-600">引入ReLU, Dropout, GPU加速。2012 ImageNet冠军，DL爆发。</p>
+                        </div>
+                        <div class="ml-6 relative">
+                            <span class="absolute -left-[31px] top-1 w-4 h-4 bg-pink-600 rounded-full border-2 border-white"></span>
+                            <h4 class="font-bold text-slate-800">VGG (加深)</h4>
+                            <p class="text-sm text-slate-600">全部用3x3小卷积核堆叠。证明"越深越好"，但难训练。</p>
+                        </div>
+                        <div class="ml-6 relative">
+                            <span class="absolute -left-[31px] top-1 w-4 h-4 bg-pink-700 rounded-full border-2 border-white"></span>
+                            <h4 class="font-bold text-slate-800">ResNet (质变)</h4>
+                            <p class="text-sm text-slate-600">引入<span class="font-bold text-pink-700">跳跃连接(Shortcut)</span>。解决梯度消失，让网络可达上千层。现代模型的骨架。</p>
+                        </div>
+                        
+                        <!-- 强调CNN总结 -->
+                        <div class="bg-pink-50 p-3 rounded-lg text-sm text-pink-900 border border-pink-100 mt-4">
+                            <i class="fas fa-info-circle mr-1"></i> 
+                            <span class="font-bold">卷积神经网络 (CNN)：</span>
+                            上述模型均属于CNN架构，核心在于利用卷积核提取局部特征，并具有平移不变性。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">05 / 10</div>
+    </section>
+
+    <!-- Slide 6: Part 4 (Merged) -->
+    <section id="research-4" class="bg-white">
+        <div class="max-w-7xl mx-auto w-full">
+            <div class="mb-5 border-l-4 border-green-600 pl-4">
+                <h2 class="text-3xl font-bold text-slate-900">组会总结 Part 4：基础架构演进</h2>
+                <p class="text-slate-500">从 DNN 到 Transformer：记忆难题的攻克与架构颠覆</p>
+            </div>
+
+            <!-- 顶部：演进路线图 -->
+            <div class="flex items-center gap-4 mb-6 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                <div class="flex-1 text-center">
+                    <div class="font-bold text-slate-600 text-sm">DNN (全连接)</div>
+                    <div class="text-[10px] text-slate-400">健忘/无时序</div>
+                </div>
+                <i class="fas fa-arrow-right text-slate-300"></i>
+                <div class="flex-1 text-center">
+                    <div class="font-bold text-blue-600 text-sm">RNN (循环)</div>
+                    <div class="text-[10px] text-slate-400">引入记忆/串行</div>
+                </div>
+                <i class="fas fa-arrow-right text-slate-300"></i>
+                <div class="flex-1 text-center bg-green-100 py-1 rounded">
+                    <div class="font-bold text-green-700 text-sm">LSTM / GRU</div>
+                    <div class="text-[10px] text-green-600">长短期记忆/门控</div>
+                </div>
+                <i class="fas fa-arrow-right text-slate-300"></i>
+                <div class="flex-1 text-center bg-indigo-100 py-1 rounded">
+                    <div class="font-bold text-indigo-700 text-sm">Transformer</div>
+                    <div class="text-[10px] text-indigo-600">并行/Attention</div>
+                </div>
+            </div>
+
+            <!-- 主体 -->
+            <div class="flex flex-col lg:flex-row gap-6">
+                <!-- 左列：LSTM & GRU 详细展示 -->
+                <div class="lg:w-2/3 bg-green-50 rounded-xl p-5 border border-green-100 shadow-sm flex flex-col">
+                    <h3 class="text-lg font-bold text-green-900 mb-3 flex items-center">
+                        <i class="fas fa-history mr-2"></i> LSTM & GRU (时序王者)
+                    </h3>
+                    
+                    <!-- 5大应用场景 -->
+                    <div class="grid grid-cols-5 gap-2 mb-4">
+                        <div class="bg-white p-2 rounded text-center" title="机器翻译">
+                            <i class="fas fa-language text-green-600 text-sm"></i>
+                            <div class="text-[9px] text-slate-600 scale-90">NLP</div>
+                        </div>
+                        <div class="bg-white p-2 rounded text-center" title="金融/天气预测">
+                            <i class="fas fa-chart-line text-green-600 text-sm"></i>
+                            <div class="text-[9px] text-slate-600 scale-90">时序</div>
+                        </div>
+                        <div class="bg-white p-2 rounded text-center" title="语音识别">
+                            <i class="fas fa-microphone text-green-600 text-sm"></i>
+                            <div class="text-[9px] text-slate-600 scale-90">语音</div>
+                        </div>
+                        <div class="bg-white p-2 rounded text-center" title="故障检测">
+                            <i class="fas fa-exclamation-triangle text-green-600 text-sm"></i>
+                            <div class="text-[9px] text-slate-600 scale-90">异常</div>
+                        </div>
+                        <div class="bg-white p-2 rounded text-center" title="动作识别">
+                            <i class="fas fa-video text-green-600 text-sm"></i>
+                            <div class="text-[9px] text-slate-600 scale-90">视频</div>
+                        </div>
+                    </div>
+
+                    <!-- 对比表 -->
+                    <div class="bg-white rounded-lg p-3 border border-green-100 text-[11px] flex-grow">
+                        <table class="w-full text-left">
+                            <thead class="bg-green-100 text-green-800">
+                                <tr>
+                                    <th class="p-1">特性</th>
+                                    <th class="p-1">LSTM (3门)</th>
+                                    <th class="p-1">GRU (2门)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100">
+                                <tr>
+                                    <td class="p-1 font-bold">结构</td>
+                                    <td class="p-1">复杂 (输入/遗忘/输出)</td>
+                                    <td class="p-1">较简 (重置/更新)</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-1 font-bold">速度</td>
+                                    <td class="p-1">较慢</td>
+                                    <td class="p-1 font-bold text-green-600">更快 (参数少)</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-1 font-bold">适用</td>
+                                    <td class="p-1">大数据长序列</td>
+                                    <td class="p-1">小数据/低算力</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 右列：黄色提示框 + Transformer 三个关键词 -->
+                <div class="lg:w-1/3 flex flex-col justify-center">
+                    
+                    <!-- 现状提示框 -->
+                    <div class="bg-yellow-50 rounded-xl p-5 border border-yellow-200 shadow-sm relative">
+                        <div class="absolute -top-3 left-4 bg-yellow-200 text-yellow-800 text-[10px] font-bold px-2 py-1 rounded">Current Status</div>
+                        <h4 class="text-sm font-bold text-yellow-800 mb-2 mt-1">Transformer 的冲击</h4>
+                        <p class="text-xs text-yellow-900 leading-relaxed mb-3">
+                            在高端 NLP/CV 领域，基于 Attention 的 Transformer 模型因其并行计算能力正逐渐取代 RNN。但 LSTM/GRU 在<span class="font-bold">低算力、小样本</span>场景仍具高性价比。
+                        </p>
+                    </div>
+
+                    <!-- 放在黄色栏目底下的小字 -->
+                    <div class="mt-4 text-center">
+                        <span class="block text-xs font-bold text-indigo-800 mb-1">Transformer 核心三要素</span>
+                        <div class="flex flex-wrap justify-center gap-2 text-[10px] text-slate-500">
+                            <span class="bg-slate-100 px-2 py-1 rounded border border-slate-200">Self-Attention</span>
+                            <span class="bg-slate-100 px-2 py-1 rounded border border-slate-200">并行化计算</span>
+                            <span class="bg-slate-100 px-2 py-1 rounded border border-slate-200">Decoder-Only</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">06 / 10</div>
+    </section>
+
+    <!-- Slide 7: DeepSeek Part 5-1: 极致架构 -->
+    <section id="research-5-1" class="bg-slate-50">
+        <div class="max-w-7xl mx-auto w-full">
+            <div class="mb-8 border-l-4 border-teal-600 pl-4">
+                <h2 class="text-3xl font-bold text-slate-900">组会总结 Part 5-1：DeepSeek 极致架构</h2>
+                <p class="text-slate-500">通过 MLA 与 MoE 架构重构，实现显存与计算效率的双重突破</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- 1. MLA (多头潜在注意力) -->
+                <div class="bg-white p-6 rounded-xl border border-teal-200 shadow-sm flex flex-col hover:shadow-md transition">
+                    <h3 class="font-bold text-xl text-teal-800 mb-4 flex items-center border-b border-teal-50 pb-2">
+                        <i class="fas fa-compress-arrows-alt mr-3"></i> 1. MLA (Multi-Head Latent Attention)
+                    </h3>
+                    <p class="text-sm text-slate-600 mb-4 italic">“解决 KV Cache 显存瓶颈的核心必杀技”</p>
+                    
+                    <div class="space-y-4 flex-grow">
+                        <div class="bg-teal-50 p-3 rounded-lg">
+                            <span class="font-bold text-teal-700 text-sm block mb-1">演进路径</span>
+                            <div class="text-xs text-slate-600">
+                                MHA (显存大) <i class="fas fa-arrow-right text-teal-300 mx-1"></i> MQA/GQA (有损压缩) <i class="fas fa-arrow-right text-teal-300 mx-1"></i> <span class="font-bold text-teal-600">MLA (极致优化)</span>
+                            </div>
+                        </div>
+
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="bg-teal-100 text-teal-700 text-[10px] font-bold px-2 py-1 rounded mr-2 mt-0.5">低秩压缩</span>
+                                <span class="text-xs text-slate-700">不存储完整KV，而是将其压缩进低维潜变量 $c_{KV}$，大幅减少显存占用。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-teal-100 text-teal-700 text-[10px] font-bold px-2 py-1 rounded mr-2 mt-0.5">矩阵吸收</span>
+                                <span class="text-xs text-slate-700">推理时利用线性代数性质，将解压矩阵吸收到投影矩阵中。<strong>推理时无需解压</strong>，计算极快。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-teal-100 text-teal-700 text-[10px] font-bold px-2 py-1 rounded mr-2 mt-0.5">RoPE 解耦</span>
+                                <span class="text-xs text-slate-700">设计“双路解耦”：内容路负责极致压缩，位置路独立保留高精度位置信息，互不干扰。</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 2. FFN-MoE (混合专家架构) -->
+                <div class="bg-white p-6 rounded-xl border border-blue-200 shadow-sm flex flex-col hover:shadow-md transition">
+                    <h3 class="font-bold text-xl text-blue-800 mb-4 flex items-center border-b border-blue-50 pb-2">
+                        <i class="fas fa-project-diagram mr-3"></i> 2. DeepSeek-MoE
+                    </h3>
+                    <p class="text-sm text-slate-600 mb-4 italic">“扩大参数规模同时保持低计算成本的关键架构”</p>
+                    
+                    <div class="space-y-4 flex-grow">
+                        <div class="bg-blue-50 p-3 rounded-lg">
+                            <span class="font-bold text-blue-700 text-sm block mb-1">细粒度专家 (Fine-Grained)</span>
+                            <div class="text-xs text-slate-600">将传统的大专家切分成更多小专家，组合更灵活，知识激活更精准。</div>
+                        </div>
+
+                        <div class="bg-blue-50 p-3 rounded-lg">
+                            <span class="font-bold text-blue-700 text-sm block mb-1">共享专家 (Shared Experts)</span>
+                            <div class="text-xs text-slate-600">设置一部分专家“始终激活”，存储通用知识（如语法、常识），路由专家专注专业知识，解决知识割裂。</div>
+                        </div>
+
+                        <div class="border border-blue-100 p-3 rounded-lg">
+                            <span class="font-bold text-blue-600 text-xs block mb-1">负载均衡 V3 (Aux-free)</span>
+                            <p class="text-xs text-slate-500">抛弃辅助 Loss（因其干扰主目标），改用 <span class="font-bold">动态偏置 (Dynamic Bias)</span>。谁忙就给谁降分，通过机制而非梯度调节流量，实现无损均衡。</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="slide-number">07 / 10</div>
+    </section>
+
+    <!-- Slide 8: DeepSeek Part 5-2: 训练与能力 -->
+    <section id="research-5-2" class="bg-white">
+        <div class="max-w-7xl mx-auto w-full">
+            <div class="mb-8 border-l-4 border-red-600 pl-4">
+                <h2 class="text-3xl font-bold text-slate-900">组会总结 Part 5-2：训练与能力</h2>
+                <p class="text-slate-500">强化学习推理、多Token预测与多模态统一</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- 3. GRPO (强化学习) -->
+                <div class="bg-slate-50 p-5 rounded-lg border-t-4 border-red-500 shadow-sm hover:-translate-y-1 transition duration-300">
+                    <div class="text-red-500 text-3xl mb-3"><i class="fas fa-robot"></i></div>
+                    <h3 class="font-bold text-lg text-slate-800 mb-2">3. GRPO (强化学习)</h3>
+                    <p class="text-xs text-red-600 font-bold mb-3 uppercase tracking-wider">DeepSeek-R1 核心</p>
+                    <div class="text-sm text-slate-600 space-y-3">
+                        <p>相比传统 PPO，GRPO 极度节省资源，无需维护庞大的 Value Model。</p>
+                        <ul class="list-disc pl-4 space-y-1">
+                            <li><span class="font-bold text-slate-700">去 Critic：</span> 省去一个巨型模型的显存。</li>
+                            <li><span class="font-bold text-slate-700">群组优势：</span> 生成一组回答，计算平均分作为基线 (Baseline)。</li>
+                        </ul>
+                        <div class="bg-white p-2 rounded text-xs text-slate-500 border border-red-100">
+                            优势：特别适合数学、代码等有明确对错标准的推理任务。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. MTP (多Token预测) -->
+                <div class="bg-slate-50 p-5 rounded-lg border-t-4 border-orange-500 shadow-sm hover:-translate-y-1 transition duration-300">
+                    <div class="text-orange-500 text-3xl mb-3"><i class="fas fa-fast-forward"></i></div>
+                    <h3 class="font-bold text-lg text-slate-800 mb-2">4. MTP (多Token预测)</h3>
+                    <p class="text-xs text-orange-600 font-bold mb-3 uppercase tracking-wider">训练效率与规划</p>
+                    <div class="text-sm text-slate-600 space-y-3">
+                        <p>打破传统“预测下一个词”的范式，一次性预测未来多个词 ($t+1, t+2...$)。</p>
+                        <div class="bg-white p-2 rounded text-xs text-slate-500 border border-orange-100">
+                            <strong>核心作用：</strong> 让模型学会“前瞻规划”，不仅看眼下，还要为后面做打算。显著提升数据效率和逻辑连贯性。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Janus (多模态) -->
+                <div class="bg-slate-50 p-5 rounded-lg border-t-4 border-purple-500 shadow-sm hover:-translate-y-1 transition duration-300">
+                    <div class="text-purple-500 text-3xl mb-3"><i class="fas fa-images"></i></div>
+                    <h3 class="font-bold text-lg text-slate-800 mb-2">5. Janus (两面神)</h3>
+                    <p class="text-xs text-purple-600 font-bold mb-3 uppercase tracking-wider">理解与生成统一</p>
+                    <div class="text-sm text-slate-600 space-y-3">
+                        <p>将多模态理解 (Understanding) 和视觉生成 (Generation) 在架构上解耦。</p>
+                        <ul class="list-disc pl-4 space-y-1">
+                            <li><span class="font-bold text-slate-700">理解：</span> 专用编码器。</li>
+                            <li><span class="font-bold text-slate-700">生成：</span> 专用编码器。</li>
+                        </ul>
+                        <div class="bg-white p-2 rounded text-xs text-slate-500 border border-purple-100">
+                            解决痛点：避免“看图”和“画图”任务相互干扰，单模型实现顶级双向能力。
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="slide-number">08 / 10</div>
+    </section>
+
+    <!-- Slide 9: 科技调研 (原 Part 6) -->
+    <section id="tech-stack" class="bg-slate-50">
+        <div class="max-w-7xl mx-auto w-full h-full flex flex-col justify-center">
+            <div class="mb-4 border-l-4 border-cyan-600 pl-4 flex justify-between items-end">
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">科技调研</h2>
+                    <p class="text-slate-500 text-sm">2026 AI 技术栈全景：从“超级个体”到“企业级编排”</p>
+                </div>
+                <div class="text-xs text-slate-400 font-mono">Date: 2026.01.21</div>
+            </div>
+
+            <!-- 全景图布局 (Bento Grid 风格，紧凑) -->
+            <div class="grid grid-cols-12 gap-4 h-auto">
+                
+                <!-- L3 前端应用层 (Top) -->
+                <div class="col-span-12 bg-white p-4 rounded-xl border border-cyan-100 shadow-sm">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-cyan-600 text-white text-[10px] font-bold px-2 py-0.5 rounded mr-2">L3</span>
+                        <h3 class="text-base font-bold text-slate-800">前端应用层：工具的垂直分化</h3>
+                    </div>
+                    
+                    <div class="flex gap-4">
+                        <!-- 办公类 -->
+                        <div class="w-1/3 space-y-2">
+                            <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">通用办公 Agent</h4>
+                            <div class="bg-cyan-50/50 p-2 rounded border border-cyan-100">
+                                <div class="font-bold text-cyan-800 text-xs">Manus</div>
+                                <p class="text-[10px] text-slate-600 leading-tight mt-0.5">全能执行者，虚拟合伙人。</p>
+                            </div>
+                            <div class="bg-cyan-50/50 p-2 rounded border border-cyan-100">
+                                <div class="font-bold text-cyan-800 text-xs">Claude Cowork</div>
+                                <p class="text-[10px] text-slate-600 leading-tight mt-0.5">桌面文件管家，本地隐私安全。</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 开发类 -->
+                        <div class="w-2/3 space-y-2">
+                            <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">开发工程 Agent</h4>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="bg-blue-50/50 p-2 rounded border border-blue-100">
+                                    <div class="font-bold text-blue-800 text-xs">Cursor</div>
+                                    <p class="text-[10px] text-slate-600 leading-tight">行业标杆，辅助编程首选。</p>
+                                </div>
+                                <div class="bg-blue-50/50 p-2 rounded border border-blue-100">
+                                    <div class="font-bold text-blue-800 text-xs">Google Antigravity</div>
+                                    <p class="text-[10px] text-slate-600 leading-tight">云原生IDE，Gemini加持。</p>
+                                </div>
+                                <div class="bg-blue-50/50 p-2 rounded border border-blue-100">
+                                    <div class="font-bold text-blue-800 text-xs">Windsurf (Cascade)</div>
+                                    <p class="text-[10px] text-slate-600 leading-tight">流式编程，意图预测。</p>
+                                </div>
+                                <div class="bg-blue-50/50 p-2 rounded border border-blue-100">
+                                    <div class="font-bold text-blue-800 text-xs">Kiro</div>
+                                    <p class="text-[10px] text-slate-600 leading-tight">Specs驱动，先文档后代码。</p>
+                                </div>
+                                <div class="col-span-2 bg-blue-50/50 p-2 rounded border border-blue-100 flex items-center">
+                                    <div class="mr-2 font-bold text-blue-800 text-xs whitespace-nowrap">Augment Code</div>
+                                    <p class="text-[10px] text-slate-600 leading-tight">百万行代码遗留系统救星，200k+上下文。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- L2 编排层 (Middle Left) -->
+                <div class="col-span-12 md:col-span-7 grid grid-cols-2 gap-4">
+                    <div class="bg-white p-3 rounded-xl border border-indigo-100 shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-indigo-600 text-white text-[10px] font-bold px-2 py-0.5 rounded mr-2">L2</span>
+                            <h3 class="text-sm font-bold text-slate-800">Dify</h3>
+                        </div>
+                        <p class="text-[10px] text-slate-600 mb-2">Agent 兵工厂。从 Prompt 到 RAG 流水线与应用编排。</p>
+                        <div class="flex gap-1">
+                            <span class="bg-indigo-50 text-indigo-700 px-1.5 py-0.5 rounded text-[9px]">知识库</span>
+                            <span class="bg-indigo-50 text-indigo-700 px-1.5 py-0.5 rounded text-[9px]">DAG编排</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl border border-pink-100 shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-pink-600 text-white text-[10px] font-bold px-2 py-0.5 rounded mr-2">L2</span>
+                            <h3 class="text-sm font-bold text-slate-800">n8n</h3>
+                        </div>
+                        <p class="text-[10px] text-slate-600 mb-2">连接万物。AI Native Workflow，落地“最后一公里”。</p>
+                        <div class="flex gap-1">
+                            <span class="bg-pink-50 text-pink-700 px-1.5 py-0.5 rounded text-[9px]">自动化</span>
+                            <span class="bg-pink-50 text-pink-700 px-1.5 py-0.5 rounded text-[9px]">API胶水</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- L0 治理与生态 (Middle Right) -->
+                <div class="col-span-12 md:col-span-5 flex flex-col gap-4">
+                    <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex-1">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-slate-700 text-white text-[10px] font-bold px-2 py-0.5 rounded mr-2">L0</span>
+                            <h3 class="text-sm font-bold text-slate-800">Opal (IAM)</h3>
+                        </div>
+                        <p class="text-[10px] text-slate-600">解决 Agent 读写权限安全。实现 JIT (即时) 访问控制与审计。</p>
+                    </div>
+                    
+                    <div class="bg-slate-50 p-2 rounded-xl border border-slate-200 border-dashed">
+                        <div class="flex justify-between items-center px-1">
+                            <span class="text-[10px] font-bold text-slate-400 uppercase">生态补充</span>
+                            <div class="flex gap-1">
+                                <span class="text-[9px] bg-white border px-1.5 py-0.5 rounded">Bolt.new</span>
+                                <span class="text-[9px] bg-white border px-1.5 py-0.5 rounded">Trae</span>
+                                <span class="text-[9px] bg-white border px-1.5 py-0.5 rounded">PearAI</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="slide-number">09 / 10</div>
+    </section>
+
+    <!-- Slide 10: 第六部分：2026 展望 (保持不变) -->
+    <section id="outlook" class="bg-white">
+        <div class="max-w-6xl mx-auto w-full">
+            <h2 class="text-3xl font-bold text-slate-900 mb-2 border-l-4 border-green-600 pl-4">2026 展望与计划</h2>
+            <p class="text-slate-500 mb-8 pl-5">寒假充电计划与研一下学期/实习规划</p>
+
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- 寒假计划 -->
+                <div class="flex-1 bg-blue-50 rounded-2xl p-6 border border-blue-100">
+                    <h3 class="text-xl font-bold text-blue-800 mb-5 flex items-center">
+                        <i class="fas fa-snowflake mr-2"></i> 寒假学习计划
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-5 h-5 rounded-full bg-blue-200 text-blue-700 flex items-center justify-center text-xs font-bold mt-0.5">1</div>
+                            <div class="ml-3">
+                                <h4 class="font-bold text-gray-800 text-sm">代码学习 (后端开发)</h4>
+                                <p class="text-xs text-gray-600 mt-1">系统学习后端开发相关知识。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-5 h-5 rounded-full bg-blue-200 text-blue-700 flex items-center justify-center text-xs font-bold mt-0.5">2</div>
+                            <div class="ml-3">
+                                <h4 class="font-bold text-gray-800 text-sm">刷算法题 (Hot 100)</h4>
+                                <p class="text-xs text-gray-600 mt-1">集中攻克 LeetCode Hot 100。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-5 h-5 rounded-full bg-blue-200 text-blue-700 flex items-center justify-center text-xs font-bold mt-0.5">3</div>
+                            <div class="ml-3">
+                                <h4 class="font-bold text-gray-800 text-sm">背景项目与简历</h4>
+                                <p class="text-xs text-gray-600 mt-1">寻找有一定意义的背景项目，包装简历。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-5 h-5 rounded-full bg-blue-200 text-blue-700 flex items-center justify-center text-xs font-bold mt-0.5">4</div>
+                            <div class="ml-3">
+                                <h4 class="font-bold text-gray-800 text-sm">英语能力</h4>
+                                <p class="text-xs text-gray-600 mt-1">坚持练习。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 实习与下学期展望 -->
+                <div class="flex-1 bg-green-50 rounded-2xl p-6 border border-green-100">
+                    <h3 class="text-xl font-bold text-green-800 mb-5 flex items-center">
+                        <i class="fas fa-briefcase mr-2"></i> 实习与未来展望
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-5 h-5 rounded-full bg-green-200 text-green-700 flex items-center justify-center text-xs font-bold mt-0.5">1</div>
+                            <div class="ml-3">
+                                <h4 class="font-bold text-gray-800 text-sm">争取实习</h4>
+                                <p class="text-xs text-gray-600 mt-1">刷题熟练后，积极投递，争取实习机会。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-5 h-5 rounded-full bg-green-200 text-green-700 flex items-center justify-center text-xs font-bold mt-0.5">2</div>
+                            <div class="ml-3">
+                                <h4 class="font-bold text-gray-800 text-sm">毕设开题</h4>
+                                <p class="text-xs text-gray-600 mt-1">按期完成毕设开题报告。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">10 / 10</div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-400 py-6 text-center text-sm no-print">
+        <p>汇报完毕，感谢聆听！</p>
+    </footer>
+
+</body>
+</html>
