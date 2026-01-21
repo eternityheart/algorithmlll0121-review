@@ -1995,87 +1995,6 @@ public ListNode detectCycle(ListNode head) {
 - 所以 \`a + b = nc\`，即 \`a = nc - b = (n-1)c + (c-b)\`
 - 这意味着从起点走 \`a\` 步，等于从相遇点走 \`(n-1)\` 圈再走 \`c-b\` 步，都会到达环入口
 `
-            },
-            {
-                id: "tricks-product-except-self",
-                title: "5. 除自身以外数组的乘积 (Product Except Self)",
-                content: `
-### 除自身以外数组的乘积 (Product of Array Except Self)
-
-欢迎来到 **代码透视眼解剖室**。
-
-这道题是经典的 **"除自身以外数组的乘积"**。
-
-如果不准用除法（不能算出总乘积再除以自己），那对于每一个数字 \`i\`，它的结果其实就是：
-**（它左边所有数的乘积） × （它右边所有数的乘积）**。
-
----
-
-### 第一阶段：变量选角面试 (The Casting Call) —— 幼儿园视角
-
-#### 1. \`int[] answer\` (变身记分牌)
-
-* **幼儿园比喻：** 这是一块 **"多功能记分牌"**。
-* **它的双重身份：**
-    * **上半场（第一遍循环）：** 它扮演"左边积数组"。\`answer[i]\` 存的是第 \`i\` 个小朋友 **左边所有人** 乘起来是多少。
-    * **下半场（第二遍循环）：** 它变身"最终结果"。我们将把"右边的积"乘进去，直接覆盖更新它。
-
-#### 2. \`int R\` (流动的扫描仪)
-
-* **幼儿园比喻：** 这是一个 **"流动的雪球"**，或者叫 **"右边积累加器"**。
-* **为什么要设计这个变量？** 我们在第二遍从右往左走的时候，不需要把右边的积存成一个数组。
-
----
-
-### 第二阶段：动作拆解 (Action & Boundaries) —— 逻辑视角
-
-#### 动作一：左侧扫荡 (累积左边的能量)
-
-\`\`\`java
-answer[0] = 1; // 边界守卫：0号左边没东西,默认为1
-for (int i = 1; i < n; i++) {
-    answer[i] = nums[i - 1] * answer[i - 1];
-}
-\`\`\`
-
-* **逻辑：** 这里 \`answer[i]\` 存的仅仅是 \`i\` **左侧** 的乘积。
-
-#### 动作二：右侧回马枪 (补齐右边的能量)
-
-\`\`\`java
-int R = 1; // 边界守卫：最后一名右边没东西,默认为1
-for (int i = n - 1; i >= 0; i--) { // 倒着走！
-    answer[i] = answer[i] * R;
-    R *= nums[i];
-}
-\`\`\`
-
----
-
-### 💡 完整代码 (Java)
-
-\`\`\`java
-public int[] productExceptSelf(int[] nums) {
-    int n = nums.length;
-    int[] answer = new int[n];
-    
-    // 1. 算左边积
-    answer[0] = 1;
-    for (int i = 1; i < n; i++) {
-        answer[i] = nums[i - 1] * answer[i - 1];
-    }
-    
-    // 2. 乘右边积
-    int R = 1;
-    for (int i = n - 1; i >= 0; i--) {
-        answer[i] = answer[i] * R;
-        R *= nums[i];
-    }
-    
-    return answer;
-}
-\`\`\`
-`
             }
         ]
     },
@@ -2653,6 +2572,102 @@ public int[][] merge(int[][] intervals) {
     }
 
     return res.toArray(new int[res.size()][]);
+}
+\`\`\`
+`
+            },
+            {
+                id: "interval-first-missing-positive",
+                title: "2. 缺失的第一个正数 (First Missing Positive)",
+                content: `
+### 缺失的第一个正数 (First Missing Positive)
+
+这道题是经典的 **"循环排序/原地哈希"** 技巧。核心在于：把数组本身当成一个 **"隐形哈希表"**，让每个数回到它应该去的位置。
+
+---
+
+### 三个条件的含义 (三重守卫)
+
+\`\`\`java
+while (nums[i] > 0 && nums[i] <= n && nums[nums[i] - 1] != nums[i])
+\`\`\`
+
+* **条件1: \`nums[i] > 0\`** → 负数和 0 对我们没用，直接跳过。
+* **条件2: \`nums[i] <= n\`** → 如果数字大于 \`n\`，它肯定不是答案。
+* **条件3: \`nums[nums[i] - 1] != nums[i]\`** → 如果目标位置已经有个跟你一模一样的人了，就别换了，避免死循环。
+
+---
+
+### 💡 完整代码 (Java)
+
+\`\`\`java
+public int firstMissingPositive(int[] nums) {
+    int n = nums.length;
+    for (int i = 0; i < n; i++) {
+        while (nums[i] > 0 && nums[i] <= n && nums[nums[i] - 1] != nums[i]) {
+            int correctPos = nums[i] - 1;
+            swap(nums, i, correctPos);
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        if (nums[i] != i + 1) return i + 1;
+    }
+    return n + 1;
+}
+
+private void swap(int[] nums, int i, int j) {
+    int temp = nums[i];
+    nums[i] = nums[j];
+    nums[j] = temp;
+}
+\`\`\`
+`
+            },
+            {
+                id: "interval-product-except-self",
+                title: "3. 除自身以外数组的乘积 (Product Except Self)",
+                content: `
+### 除自身以外数组的乘积 (Product of Array Except Self)
+
+这道题的核心：对于每一个数字 \`i\`，它的结果就是：
+**（它左边所有数的乘积） × （它右边所有数的乘积）**。
+
+---
+
+### 变量角色
+
+#### 1. \`int[] answer\` (变身记分牌)
+
+* **上半场：** 它扮演"左边积数组"。\`answer[i]\` 存的是第 \`i\` 个小朋友 **左边所有人** 乘起来是多少。
+* **下半场：** 它变身"最终结果"。我们将把"右边的积"乘进去。
+
+#### 2. \`int R\` (流动的扫描仪)
+
+* 这是一个 **"右边积累加器"**。我们在第二遍从右往左走的时候，用它累积右边的乘积。
+
+---
+
+### 💡 完整代码 (Java)
+
+\`\`\`java
+public int[] productExceptSelf(int[] nums) {
+    int n = nums.length;
+    int[] answer = new int[n];
+    
+    // 1. 算左边积
+    answer[0] = 1;
+    for (int i = 1; i < n; i++) {
+        answer[i] = nums[i - 1] * answer[i - 1];
+    }
+    
+    // 2. 乘右边积
+    int R = 1;
+    for (int i = n - 1; i >= 0; i--) {
+        answer[i] = answer[i] * R;
+        R *= nums[i];
+    }
+    
+    return answer;
 }
 \`\`\`
 `
