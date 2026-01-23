@@ -48,22 +48,24 @@ function parseMarkdown(text: string): string {
     }
   });
 
-  // 处理标题 (Block)
-  result = result.replace(/^### (.*$)/gm, '<h3 class="content-h3">$1</h3>');
-  result = result.replace(/^#### (.*$)/gm, '<h4 class="content-h4">$1</h4>');
+  // 处理标题 (Block) - 增加 H1, H2 支持，并允许前导空格
+  result = result.replace(/^\s*# (.*$)/gm, '<h1 class="content-h1">$1</h1>');
+  result = result.replace(/^\s*## (.*$)/gm, '<h2 class="content-h2">$1</h2>');
+  result = result.replace(/^\s*### (.*$)/gm, '<h3 class="content-h3">$1</h3>');
+  result = result.replace(/^\s*#### (.*$)/gm, '<h4 class="content-h4">$1</h4>');
 
   // 处理引用 > text (Block)
   result = result.replace(/^> (.*$)/gm, '<blockquote class="content-blockquote">$1</blockquote>');
   result = result.replace(/<\/blockquote>\n<blockquote class="content-blockquote">/g, '<br/>');
 
-  // 处理无序列表 (Block) - 支持 - 和 *
-  result = result.replace(/^[-*] (.*$)/gm, '<li class="content-li">$1</li>');
+  // 处理无序列表 (Block) - 支持 - 和 *，允许缩进
+  result = result.replace(/^\s*[-*] (.*$)/gm, '<li class="content-li">$1</li>');
   result = result.replace(/(<li class="content-li">.*<\/li>\n?)+/g, (match) => {
     return `<ul class="content-ul">${match}</ul>`;
   });
 
   // 处理有序列表 (Block)
-  result = result.replace(/^\d+\. (.*$)/gm, '<li class="content-oli">$1</li>');
+  result = result.replace(/^\s*\d+\. (.*$)/gm, '<li class="content-oli">$1</li>');
   result = result.replace(/(<li class="content-oli">.*<\/li>\n?)+/g, (match) => {
     return `<ol class="content-ol">${match}</ol>`;
   });
