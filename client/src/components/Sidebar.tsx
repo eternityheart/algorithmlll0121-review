@@ -169,7 +169,7 @@ function CategoryItem({
       <div
         className={cn(
           "overflow-hidden transition-all duration-300 ease-in-out",
-          isExpanded ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+          isExpanded ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
         )}
       >
         <div className="pl-4 pr-2 pb-2 space-y-1">
@@ -185,7 +185,10 @@ function CategoryItem({
                   : "text-muted-foreground"
               )}
             >
-              {section.title}
+              <div className="flex items-center gap-2">
+                {section.icon && <span>{section.icon}</span>}
+                <span>{section.title}</span>
+              </div>
             </button>
           ))}
         </div>
