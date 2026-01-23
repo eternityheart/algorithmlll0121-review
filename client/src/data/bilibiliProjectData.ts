@@ -4977,7 +4977,7 @@ docker-compose up -d flask-service
 
 展示整体技术栈和层级关系：
 
-![系统架构图](diagrams/system_architecture.png)
+![系统架构图](/project-assets/diagrams/system_architecture.png)
 
 **架构说明**：
 - **客户端层**：HTML/CSS/JS前端
@@ -4991,7 +4991,7 @@ docker-compose up -d flask-service
 
 展示用户与系统的交互：
 
-![用例图](diagrams/usecase_diagram.png)
+![用例图](/project-assets/diagrams/usecase_diagram.png)
 
 **核心用例**：
 | 用例 | 描述 |
@@ -5007,7 +5007,7 @@ docker-compose up -d flask-service
 
 展示Agent一键优化的调用流程：
 
-![时序图](diagrams/sequence_diagram.png)
+![时序图](/project-assets/diagrams/sequence_diagram.png)
 
 **工作流步骤**：
 1. 用户输入标题
@@ -5023,7 +5023,7 @@ docker-compose up -d flask-service
 
 展示数据如何在系统中流动：
 
-![数据流图](diagrams/dataflow_diagram.png)
+![数据流图](/project-assets/diagrams/dataflow_diagram.png)
 
 **数据流向**：
 - 用户 → 1.0标题分析 → LLM → 返回评分
@@ -5036,7 +5036,7 @@ docker-compose up -d flask-service
 
 展示数据库设计：
 
-![ER图](diagrams/er_diagram.png)
+![ER图](/project-assets/diagrams/er_diagram.png)
 
 **实体关系**：
 - VIDEO (1) → (N) HEAT_RECORD
@@ -5048,7 +5048,7 @@ docker-compose up -d flask-service
 
 展示Docker容器编排：
 
-![部署图](diagrams/deployment_diagram.png)
+![部署图](/project-assets/diagrams/deployment_diagram.png)
 
 **容器配置**：
 | 容器 | 端口 | 说明 |
