@@ -3,6 +3,8 @@
  * 包含所有知识点内容，正确处理Markdown和LaTeX符号
  */
 
+import { bilibiliProjectData } from "./bilibiliProjectData";
+
 export interface Section {
     id: string;
     title: string;
@@ -2851,7 +2853,8 @@ public List<Integer> spiralOrder(int[][] matrix) {
 `
             }
         ]
-    }
+    },
+    bilibiliProjectData
 ];
 
 export function getCategoryById(id: string): Category | undefined {
