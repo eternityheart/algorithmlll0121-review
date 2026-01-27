@@ -6,7 +6,7 @@
 import { cn } from "@/lib/utils";
 import { algorithmData, type Category } from "@/data/algorithmData";
 import { ChevronDown, ChevronRight, BookOpen, Menu, X, FileText } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 interface SidebarProps {
   activeCategory: string;
@@ -24,6 +24,7 @@ export default function Sidebar({
   onMobileToggle,
 }: SidebarProps) {
   const [expandedCategories, setExpandedCategories] = useState<string[]>([activeCategory]);
+  const navRef = useRef<HTMLElement | null>(null);
 
   const toggleCategory = (categoryId: string) => {
     setExpandedCategories(prev =>
@@ -32,6 +33,25 @@ export default function Sidebar({
         : [...prev, categoryId]
     );
   };
+
+  useEffect(() => {
+    setExpandedCategories(prev =>
+      prev.includes(activeCategory) ? prev : [...prev, activeCategory]
+    );
+  }, [activeCategory]);
+
+  useLayoutEffect(() => {
+    const navElement = navRef.current;
+    if (!navElement) return;
+    const activeButton = navElement.querySelector<HTMLButtonElement>(
+      `[data-section-id="${activeSection}"]`
+    );
+    if (!activeButton) return;
+    const frame = requestAnimationFrame(() => {
+      activeButton.scrollIntoView({ block: "nearest" });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [activeSection, activeCategory, expandedCategories]);
 
   const handleSectionClick = (categoryId: string, sectionId: string) => {
     onSelectSection(categoryId, sectionId);
@@ -69,7 +89,7 @@ export default function Sidebar({
           isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         )}
       >
-        <div className="h-full flex flex-col">
+        <div className="h-full flex flex-col min-h-0">
           {/* Logo区域 */}
           <div className="p-6 border-b border-border/50">
             <div className="flex items-center gap-3">
@@ -86,7 +106,7 @@ export default function Sidebar({
           </div>
 
           {/* 导航列表 */}
-          <nav className="flex-1 overflow-y-auto p-4 space-y-2">
+          <nav ref={navRef} className="flex-1 min-h-0 overflow-y-auto p-4 pb-8 space-y-2">
             {algorithmData.map((category) => (
               <CategoryItem
                 key={category.id}
@@ -169,7 +189,7 @@ function CategoryItem({
       <div
         className={cn(
           "overflow-hidden transition-all duration-300 ease-in-out",
-          isExpanded ? "max-h-[5000px] opacity-100" : "max-h-0 opacity-0"
+          isExpanded ? "max-h-[9999px] opacity-100" : "max-h-0 opacity-0"
         )}
       >
         <div className="pl-4 pr-2 pb-2 space-y-1">
@@ -177,6 +197,7 @@ function CategoryItem({
             <button
               key={section.id}
               onClick={() => onSelectSection(section.id)}
+              data-section-id={section.id}
               className={cn(
                 "w-full text-left px-3 py-2 rounded-lg text-sm transition-all duration-200",
                 "hover:bg-accent/50 hover:translate-x-1",
