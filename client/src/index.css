@@ -1,0 +1,357 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Note: Tailwind 3 does not support @theme inline or @custom-variant */
+/* Custom font families are applied via CSS variables below */
+
+
+:root {
+  --primary: oklch(0.35 0.12 250);
+  --primary-foreground: oklch(0.98 0 0);
+  --sidebar-primary: oklch(0.35 0.12 250);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --chart-1: oklch(0.65 0.15 250);
+  --chart-2: oklch(0.55 0.18 20);
+  --chart-3: oklch(0.65 0.15 170);
+  --chart-4: oklch(0.60 0.12 280);
+  --chart-5: oklch(0.70 0.14 60);
+  --radius: 0.75rem;
+  --background: oklch(0.985 0.005 80);
+  --foreground: oklch(0.20 0.02 250);
+  --card: oklch(1 0 0 / 85%);
+  --card-foreground: oklch(0.20 0.02 250);
+  --popover: oklch(1 0 0 / 95%);
+  --popover-foreground: oklch(0.20 0.02 250);
+  --secondary: oklch(0.96 0.01 250);
+  --secondary-foreground: oklch(0.35 0.08 250);
+  --muted: oklch(0.94 0.01 80);
+  --muted-foreground: oklch(0.45 0.02 250);
+  --accent: oklch(0.94 0.02 250);
+  --accent-foreground: oklch(0.25 0.10 250);
+  --destructive: oklch(0.60 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.88 0.02 250);
+  --input: oklch(0.92 0.01 250);
+  --ring: oklch(0.50 0.15 250);
+  --sidebar: oklch(1 0 0 / 80%);
+  --sidebar-foreground: oklch(0.20 0.02 250);
+  --sidebar-accent: oklch(0.94 0.02 250);
+  --sidebar-accent-foreground: oklch(0.25 0.10 250);
+  --sidebar-border: oklch(0.88 0.02 250);
+  --sidebar-ring: oklch(0.50 0.15 250);
+}
+
+.dark {
+  --primary: oklch(0.65 0.15 250);
+  --primary-foreground: oklch(0.98 0 0);
+  --sidebar-primary: oklch(0.65 0.15 250);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --background: oklch(0.15 0.02 250);
+  --foreground: oklch(0.92 0.01 80);
+  --card: oklch(0.20 0.02 250 / 90%);
+  --card-foreground: oklch(0.92 0.01 80);
+  --popover: oklch(0.18 0.02 250 / 95%);
+  --popover-foreground: oklch(0.92 0.01 80);
+  --secondary: oklch(0.25 0.02 250);
+  --secondary-foreground: oklch(0.85 0.01 80);
+  --muted: oklch(0.22 0.02 250);
+  --muted-foreground: oklch(0.65 0.02 80);
+  --accent: oklch(0.28 0.04 250);
+  --accent-foreground: oklch(0.92 0.01 80);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.30 0.02 250);
+  --input: oklch(0.28 0.02 250);
+  --ring: oklch(0.60 0.15 250);
+  --chart-1: oklch(0.70 0.15 250);
+  --chart-2: oklch(0.65 0.18 20);
+  --chart-3: oklch(0.70 0.15 170);
+  --chart-4: oklch(0.65 0.12 280);
+  --chart-5: oklch(0.75 0.14 60);
+  --sidebar: oklch(0.18 0.02 250 / 90%);
+  --sidebar-foreground: oklch(0.92 0.01 80);
+  --sidebar-accent: oklch(0.28 0.04 250);
+  --sidebar-accent-foreground: oklch(0.92 0.01 80);
+  --sidebar-border: oklch(0.30 0.02 250);
+  --sidebar-ring: oklch(0.60 0.15 250);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Noto Sans SC', system-ui, sans-serif;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+  }
+
+  code,
+  pre {
+    font-family: 'Fira Code', monospace;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+
+  /* 毛玻璃卡片效果 - 移除 backdrop-blur 以优化平板性能 */
+  .glass-card {
+    @apply bg-card border border-white/20 shadow-lg;
+  }
+
+  /* 代码块样式 */
+  .code-block {
+    @apply bg-slate-900 text-slate-100 rounded-xl p-4 overflow-x-auto my-4;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    line-height: 1.6;
+  }
+
+  @media (min-width: 640px) {
+    .code-block {
+      font-size: 0.875rem;
+    }
+  }
+
+  .code-block code {
+    @apply text-slate-100;
+    white-space: pre;
+    display: block;
+  }
+
+  /* 行内代码样式 */
+  .inline-code {
+    @apply px-1.5 py-0.5 bg-slate-100 text-indigo-600 rounded text-sm;
+    font-family: 'Fira Code', monospace;
+  }
+
+  /* 知识点高亮 */
+  .highlight-box {
+    @apply bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg;
+  }
+
+  /* 分类标签渐变 */
+  .tag-binary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  .tag-backtrack {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  }
+
+  .tag-greedy {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  }
+
+  .tag-dp {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  }
+
+  .tag-technique {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  }
+
+  /* 滚动条美化 */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full;
+    background: var(--muted-foreground);
+    opacity: 0.3;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground);
+    opacity: 0.5;
+  }
+
+  /* ========================================
+     Markdown 渲染样式 - 统一手机端宽度
+     ======================================== */
+
+  .markdown-content {
+    @apply text-slate-700 leading-relaxed;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* 标题样式 */
+  .markdown-content .content-h3 {
+    @apply text-lg sm:text-xl font-bold text-slate-800 mt-6 sm:mt-8 mb-3 sm:mb-4 flex items-center gap-2;
+    font-family: 'Noto Serif SC', Georgia, serif;
+  }
+
+  .markdown-content .content-h3::before {
+    content: '';
+    @apply w-1 sm:w-1.5 h-5 sm:h-6 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full flex-shrink-0;
+  }
+
+  .markdown-content .content-h4 {
+    @apply text-base sm:text-lg font-semibold text-slate-700 mt-4 sm:mt-6 mb-2 sm:mb-3;
+  }
+
+  /* 段落样式 */
+  .markdown-content .content-p {
+    @apply my-3 sm:my-4 text-sm sm:text-base text-slate-600 leading-relaxed;
+  }
+
+  /* 引用块样式 - 重要概念强调 */
+  .markdown-content .content-blockquote {
+    @apply my-4 sm:my-6 pl-3 sm:pl-4 py-2 sm:py-3 bg-amber-50/80 rounded-r-xl border-l-4 border-amber-400 text-slate-700 italic text-sm sm:text-base;
+  }
+
+  /* 列表样式 */
+  .markdown-content .content-ul {
+    @apply my-3 sm:my-4 space-y-1.5 sm:space-y-2 list-none pl-0;
+  }
+
+  .markdown-content .content-li {
+    @apply flex items-start gap-2 text-sm sm:text-base text-slate-600;
+  }
+
+  .markdown-content .content-li::before {
+    content: '';
+    @apply w-1.5 h-1.5 rounded-full bg-indigo-400 mt-2 flex-shrink-0;
+  }
+
+  .markdown-content .content-ol {
+    @apply my-3 sm:my-4 space-y-1.5 sm:space-y-2 list-decimal pl-5;
+  }
+
+  .markdown-content .content-oli {
+    @apply text-sm sm:text-base text-slate-600;
+  }
+
+  /* 表格样式 */
+  .markdown-content .table-wrapper {
+    @apply my-4 sm:my-6 overflow-x-auto rounded-xl border border-border;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .markdown-content .content-table {
+    @apply w-full min-w-max text-sm;
+  }
+
+  .markdown-content .table-header {
+    @apply bg-slate-100;
+  }
+
+  .markdown-content .table-row:nth-child(even) {
+    @apply bg-slate-50;
+  }
+
+  .markdown-content .table-cell {
+    @apply px-3 sm:px-4 py-2 sm:py-3 border-b border-border text-slate-600 text-xs sm:text-sm;
+  }
+
+  .markdown-content .table-header .table-cell {
+    @apply font-semibold text-slate-700 bg-slate-100;
+  }
+
+  /* 分隔线 */
+  .markdown-content .content-hr {
+    @apply my-6 sm:my-8 border-0 h-px bg-gradient-to-r from-transparent via-border to-transparent;
+  }
+
+  /* LaTeX 公式样式 */
+  .markdown-content .latex-block {
+    @apply my-4 sm:my-6 py-3 sm:py-4 px-2 sm:px-4 bg-slate-50 rounded-lg overflow-x-auto text-center;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .markdown-content .latex-inline {
+    @apply mx-0.5;
+  }
+
+  .markdown-content .latex-error {
+    @apply text-red-500 bg-red-50 px-2 py-1 rounded;
+  }
+
+  /* KaTeX 样式调整 */
+  .markdown-content .katex {
+    font-size: 1em;
+  }
+
+  @media (min-width: 640px) {
+    .markdown-content .katex {
+      font-size: 1.1em;
+    }
+  }
+
+  .markdown-content .katex-display {
+    @apply overflow-x-auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* 算法内容区域 */
+  .algorithm-content {
+    @apply w-full;
+  }
+
+  .algorithm-content .markdown-content {
+    @apply w-full;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
